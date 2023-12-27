@@ -1,7 +1,7 @@
 import { Account, Client } from "appwrite";
 import service from "../service";
 const client = new Client()
-  .setEndpoint("https://cloud.appwrite.io/v1")
+  .setEndpoint(service.appwriteUrl)
   .setProject(service.appwriteProjectId);
 const account = new Account(client);
 
