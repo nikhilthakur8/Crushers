@@ -54,20 +54,20 @@ function Profile() {
           <form>
             <h1 className="bg-gray-400 md:w-4/5 md:mx-auto rounded-xl font-semibold text-2xl px-5 py-3">
               <p className="text-black inline  font-semibold">Name: </p>
-              <p>
+              <p className="inline">
               {userData?.name}
               </p>
             </h1>
 
-            <p className="px-5 text-lg py-3">
+            <p className="px-5 text-lg pt-3">
               <p className="text-black inline  font-semibold">User Id: </p>
-              <p>
+              <p className="inline">
               {userData?.$id}
               </p>
             </p>
             <p className="px-5 text-lg py-3">
               <p className="text-black  inline font-semibold">Email: </p>
-              <p>
+              <p className="inline">
               {userData?.email}
               </p>
             </p>
