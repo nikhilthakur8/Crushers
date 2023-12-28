@@ -83,7 +83,7 @@ export default function ExampleNavbarFour() {
         </div>
         <div className="flex relative grow md:justify-end justify-center">
           <input
-            className="flex h-10 md:w-[400px] w-full mx-3 rounded-md bg-gray-200 px-3 py-2 placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-white/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 text-lg"
+            className="flex h-10 md:w-[400px] w-[250px] rounded-md bg-gray-200 px-3 py-2 placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-white/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 text-lg"
             type="text"
             placeholder="Search"
             onClick={(e) => e.currentTarget.select()}
@@ -93,10 +93,10 @@ export default function ExampleNavbarFour() {
             onClick={() => {
               setItems([]);
             }}
-            className="absolute z-10 shadow-lg shadow-black top-12 max-h-[70vh] overflow-auto cursor-pointer  rounded-xl"
+            className="absolute z-10 shadow-lg shadow-black top-12 max-h-[70vh] overflow-auto cursor-pointer  rounded-xl "
           >
             {loading ? (
-              <div className="overflow-hidden flex justify-center md:w-[400px] w-[270px] h-12 items-center bg-gray-300 font-bolder ">
+              <div className="overflow-hidden flex justify-center md:w-[400px] w-[260px] h-12 items-center bg-gray-300 font-bolder ">
                 <ClipLoader />
               </div>
             ) : (
