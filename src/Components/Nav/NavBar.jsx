@@ -96,7 +96,7 @@ export default function ExampleNavbarFour() {
             className="absolute z-10 shadow-lg shadow-black top-12 max-h-[70vh] overflow-auto cursor-pointer  rounded-xl "
           >
             {loading ? (
-              <div className="overflow-hidden flex justify-center md:w-[400px] w-[260px] h-12 items-center bg-gray-300 font-bolder ">
+              <div className="overflow-hidden flex justify-center md:w-[400px] w-[250px] h-12 items-center bg-gray-300 font-bolder ">
                 <ClipLoader />
               </div>
             ) : (
