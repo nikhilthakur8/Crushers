@@ -4,7 +4,7 @@ function UserCard({ result, ...props }) {
   return (
     <Link to={`/user/${result.$id}`}>
       <div
-        className=" flex  items-center w-[270px] md:w-[400px] bg-gray-400"
+        className=" flex  items-center w-[260px] md:w-[400px] bg-gray-400"
         {...props}
       >
         <img
