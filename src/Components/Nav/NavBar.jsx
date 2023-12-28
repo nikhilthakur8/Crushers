@@ -48,7 +48,7 @@ export default function ExampleNavbarFour() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <div className="inline-flex items-center space-x-2">
           <span>
-            <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTsNzXnQ3DZVtU8RteFSaX9-UAvwErM_fk_DPPRjWDufrHpQ7wp" className="m-0 p-0 md:w-16 md:h-16 w-12 h-12" height={50} width={50}   alt="" />
+            <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTsNzXnQ3DZVtU8RteFSaX9-UAvwErM_fk_DPPRjWDufrHpQ7wp" className="m-0  p-0 md:w-16 md:h-16 w-12 h-12" height={50} width={50}   alt="" />
             {/* <svg
               width="30"
               height="30"
@@ -83,7 +83,7 @@ export default function ExampleNavbarFour() {
         </div>
         <div className="flex relative grow md:justify-end justify-center">
           <input
-            className="flex h-10 md:w-[400px] w-[250px] rounded-md bg-gray-200 px-3 py-2 placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-white/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 text-lg"
+            className="flex h-10 md:w-[400px] w-full mx-3 rounded-md bg-gray-200 px-3 py-2 placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-white/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 text-lg"
             type="text"
             placeholder="Search"
             onClick={(e) => e.currentTarget.select()}
@@ -119,8 +119,8 @@ export default function ExampleNavbarFour() {
             </span>
           </div>
         </Link>
-        <div className="ml-2 lg:hidden text-white">
-          <Menu onClick={toggleMenu} className="h-7 w-7 cursor-pointer" />
+        <div className=" lg:hidden text-white">
+          <Menu onClick={toggleMenu} className="h-7 mx-2 w-7 cursor-pointer" />
         </div>
         {isMenuOpen && (
           <div className="absolute inset-x-0 top-0 z-50 origin-top-right transform p-2 transition lg:hidden">
@@ -142,7 +142,7 @@ export default function ExampleNavbarFour() {
                         />
                       </svg> */}
                       <img 
-                      className="m-0 p-0 w-14 h-14"src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTsNzXnQ3DZVtU8RteFSaX9-UAvwErM_fk_DPPRjWDufrHpQ7wp"  height={50} width={50}  alt="" />
+                      className="m-0 p-0 w-14 h-14"src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTsNzXnQ3DZVtU8RteFSaX9-UAvwErM_fk_DPPRjWDufrHpQ7wp"    alt="" />
                     </span>
                     <span className="font-bold text-white">Crushers</span>
                   </div>

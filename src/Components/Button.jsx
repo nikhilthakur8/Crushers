@@ -15,7 +15,7 @@ export function TrailingIconButtons({
       className="w-full  flex items-center justify-center bg-blue-500 px-10 py-2 my-2 text-base md:text-lg font-semibold text-white hover:bg-blue-500/70"
       {...props}
     >
-      {loading ? <ClipLoader /> : text}
+      {loading ? <ClipLoader size={30}/> : text}
       {/* <ArrowRight className="ml-2 h-4 w-4" /> */}
     </button>
   );

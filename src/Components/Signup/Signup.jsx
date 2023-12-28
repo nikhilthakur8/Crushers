@@ -45,12 +45,12 @@ function Signup() {
   }
   return (
     <Container style="#2f2f4c">
-      <div className="w-4/5 lg:w-[30%] md:w-[40%]  h-[100dvh] mx-auto flex justify-center items-center flex-col">
+      <div className="w-[85%] lg:w-[30%] md:w-[40%] py-20 min-h-dvh mx-auto flex justify-center items-center flex-col">
         {error && error.length > 0 && <AlertBanner message={error} />}
         <div>
-          <img className="w-12 h-12 -mt-10 mb-5" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTsNzXnQ3DZVtU8RteFSaX9-UAvwErM_fk_DPPRjWDufrHpQ7wp" alt="" />
+          <img className="w-12 h-12  rounded-sm -mt-5 mb-5" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTsNzXnQ3DZVtU8RteFSaX9-UAvwErM_fk_DPPRjWDufrHpQ7wp" alt="" />
         </div>
-        <h1 className="md:text-3xl text-2xl mb-5 text-white ">Sign up to Crushers App</h1>
+        <h1 className="md:text-3xl text-2xl  mb-5 text-white ">Sign up to Crushers App</h1>
         <form className="w-full " onSubmit={handleSubmit(onSubmit)}>
           <BottomTextInput
             label={"Full Name"}
