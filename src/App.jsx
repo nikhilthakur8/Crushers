@@ -4,9 +4,10 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { Footer } from "./Components/Footer/Footer";
 import { isAuthenticated } from "./Jwt/isAuthenticated";
 import { useEffect, useState } from "react";
-import { getUser, logout } from "./appwrite/auth";
+import { getUser, logout, userLogin } from "./appwrite/auth";
 import { useDispatch } from "react-redux";
 import { login, logout as userLogout } from "./features/User";
+import { getUserById } from "./appwrite/config";
 function App() {
   const userData = isAuthenticated();
   const [validUser, setValidUser] = useState(false);
@@ -14,13 +15,21 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     if (!userData) navigate("/login");
-    if (!userData.emailVerification) {
-      localStorage.clear();
-      logout();
-      navigate("/wait");
-    } else {
-      setValidUser(true);
-      dispatch(login(userData));
+    else {
+      getUser()
+        .then((res) => {
+          if (!res.emailVerification) {
+            logout();
+            localStorage.clear();
+            navigate("/wait");
+          } else if(res.emailVerification){
+            dispatch(login(res));
+            setValidUser(true);
+          }
+        })
+        .catch(() => {
+          navigate("/login");
+        });
     }
   }, []);
   return (
