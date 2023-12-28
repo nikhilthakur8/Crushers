@@ -58,7 +58,7 @@ function Wait() {
             If your Account Status showing banned then mail{" "}
             <a
               className="text-blue-600 underline"
-              href="mailto:topcoolfacts571@gmail.com"
+              href="mailto:cristianorolando696.com"
             >
               {" "}
               here
