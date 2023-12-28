@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function Para({ text, output }) {
   return (
     <div className="w-full px-6 md:w-[95%] flex justify-between text-base md:text-xl lg:text-2xl my-2">
-      <div className="inline">
+      <div className="inline-flex flex-row">
         <p className=" text-gray-900 inline font-medium  mr-2 ">{text}</p>
         <p className=" text-gray-200 inline ">{output}</p>
       </div>
