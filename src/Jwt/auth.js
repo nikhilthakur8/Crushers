@@ -6,7 +6,6 @@ export const encryptData = (data) => {
     const encrypted = CryptoJS.AES.encrypt(JSON.stringify(data), service.secretKey);
     return encrypted.toString();
   } catch (error) {
-    console.error('Encryption error:', error);
     return null;
   }
 };
@@ -17,7 +16,6 @@ export const decryptData = (encryptedData) => {
     const decrypted = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
     return decrypted;
   } catch (error) {
-    console.error('Decryption error:', error);
     return null;
   }
 };

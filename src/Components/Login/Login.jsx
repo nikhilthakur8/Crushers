@@ -35,7 +35,6 @@ function Login() {
       .catch((error) => {
         setLoading(false);
         setError(error.message);
-        console.log(error);
       });
   }
   return (
