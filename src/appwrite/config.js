@@ -14,9 +14,10 @@ export const RandomUserList = async () => {
     service.appwriteCollectionId,
     [Query.limit(958)]
   );
+  console.log(documents);
   const selectedUser = [];
   for (let index = 0; index <12; index++) {
-    selectedUser.push(documents[Math.floor(1 + Math.random() * 958)]);
+    selectedUser.push(documents[Math.floor(1 + Math.random() * 957)]);
   }
   selectedUser.forEach(
     (eachUser) => (eachUser["imgLink"] = getPhotoPreview(eachUser.image))

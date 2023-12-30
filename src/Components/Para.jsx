@@ -11,20 +11,20 @@ function Para({ text, output }) {
         <p className=" text-gray-200 inline ">{output}</p>
       </div>
       {text === "Address:" && (
-        <Link
+        <a target="_blank"
           className="m-0 p-0"
-          to={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
             output
-          )}`}
+          )}`} rel="noreferrer"
         >
           <ExternalLink className="w-10 h-7 rounded-md text-blue-500 bg-white p-0.5 active:text-white active:bg-black font-semibold" />
-        </Link>
+        </a>
       )}
 
       {text === "Phone No. " && (
-        <Link className="m-0 justify-self-end p-0" to={`tel:+91${output}`}>
+        <a className="m-0 justify-self-end p-0" target="_blank" href={`tel:+91${output}`} rel="noreferrer">
           <ExternalLink className="w-10 h-7  rounded-md text-blue-500 bg-white p-0.5 active:text-white active:bg-black font-semibold" />
-        </Link>
+        </a>
       )}
     </div>
   );
