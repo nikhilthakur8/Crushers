@@ -12,7 +12,7 @@ export const RandomUserList = async () => {
   const { documents } = await databases.listDocuments(
     service.appwriteDatabaseId,
     service.appwriteCollectionId,
-    [Query.limit(958)]
+    [Query.limit(1045)]
   );
   const selectedUser = [];
   for (let index = 0; index < 12; index++) {
