@@ -2,9 +2,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import Para from "../Para";
-import { useLoaderData } from "react-router-dom";
-import { getUserById } from "../../appwrite/config";
+import { useLoaderData, useParams } from "react-router-dom";
+import { getUserById, updateTheSeenBy } from "../../appwrite/config";
 import ClipLoader from "react-spinners/ClipLoader";
+import { useSelector } from "react-redux";
 export const userCardLoader = async ({ params }) => {
   const res = await getUserById(params.userId);
   return res;
@@ -13,8 +14,11 @@ function User() {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState([]);
   const userData = useLoaderData();
+  const {userId} = useParams();
+  const requestingUser = useSelector(state=>state.userData);
   useEffect(() => {
     setUser(userData);
+    updateTheSeenBy(requestingUser,userId,userData);
   }, [userData]);
   return (
     <div className="shadow-xl shadow-black  md:w-/6  mx-auto px-auto w-[90%] md:min-h-[78vh]  md:px-1 my-6 mb-8 py-5  rounded-lg bg-purple-700 md:rounded-3xl flex justify-center items-start  flex-col md:flex-row">

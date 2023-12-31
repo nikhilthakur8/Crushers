@@ -15,8 +15,8 @@ export const RandomUserList = async () => {
     [Query.limit(958)]
   );
   const selectedUser = [];
-  for (let index = 0; index <12; index++) {
-    selectedUser.push(documents[Math.floor(1 + Math.random() * 957)]);
+  for (let index = 0; index < 12; index++) {
+    selectedUser.push(documents[Math.floor(1 + Math.random() * 1045)]);
   }
   selectedUser.forEach(
     (eachUser) => (eachUser["imgLink"] = getPhotoPreview(eachUser.image))
@@ -27,7 +27,7 @@ export const searchUserByKeyword = async (keyword) => {
   const user = await databases.listDocuments(
     service.appwriteDatabaseId,
     service.appwriteCollectionId,
-    [Query.search("fullName", keyword), Query.limit(5)]
+    [Query.search("fullName", keyword), Query.limit(10)]
   );
   const users = user.documents;
   users.forEach((eachUser) => {
@@ -38,17 +38,34 @@ export const searchUserByKeyword = async (keyword) => {
   return users;
 };
 export const getPhotoPreview = (fileId) => {
-  return storage.getFilePreview(
-    service.appwriteBucketId,
-    fileId,
-    );
+  return storage.getFilePreview(service.appwriteBucketId, fileId);
 };
 export const getUserById = async (userId) => {
   const user = await databases.getDocument(
     service.appwriteDatabaseId,
     service.appwriteCollectionId,
-    userId,
+    userId
   );
   user["imgLink"] = getPhotoPreview(user.image);
   return user;
+};
+
+export const updateTheSeenBy = async (
+  { $id, email, fullName },
+  docId,
+  { seenBy }
+) => {
+  const reqUserDetails = JSON.stringify({
+    $id,
+    time: Date.now(),
+    email,
+    fullName,
+  });
+  const newSeenBy = [reqUserDetails, ...seenBy];
+  await databases.updateDocument(
+    service.appwriteDatabaseId,
+    service.appwriteCollectionId,
+    docId,
+    { seenBy: newSeenBy }
+  );
 };

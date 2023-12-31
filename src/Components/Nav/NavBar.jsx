@@ -38,9 +38,9 @@ export default function ExampleNavbarFour() {
         setLoading(false);
       });
     } else {
-      setTimeout(()=>{
+      setTimeout(() => {
         setItems([]);
-      },700);
+      }, 700);
     }
   }, [inputUser]);
   return (
@@ -48,7 +48,13 @@ export default function ExampleNavbarFour() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <div className="inline-flex items-center space-x-2">
           <span>
-            <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTsNzXnQ3DZVtU8RteFSaX9-UAvwErM_fk_DPPRjWDufrHpQ7wp" className="m-0  p-0 md:w-16 md:h-16 w-12 h-12" height={50} width={50}   alt="" />
+            <img
+              src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTsNzXnQ3DZVtU8RteFSaX9-UAvwErM_fk_DPPRjWDufrHpQ7wp"
+              className="m-0  p-0 md:w-16 md:h-16 w-12 h-12"
+              height={50}
+              width={50}
+              alt=""
+            />
             {/* <svg
               width="30"
               height="30"
@@ -93,7 +99,7 @@ export default function ExampleNavbarFour() {
             onClick={() => {
               setItems([]);
             }}
-            className="absolute z-10 shadow-lg shadow-black top-12 max-h-[70vh] overflow-auto cursor-pointer  rounded-xl "
+            className="absolute z-10 shadow-lg shadow-black top-12 no-scrollbar max-h-[40vh] overflow-auto cursor-pointer  rounded-xl "
           >
             {loading ? (
               <div className="overflow-hidden flex justify-center md:w-[400px] w-[250px] h-12 items-center bg-gray-300 font-bolder ">
@@ -141,8 +147,11 @@ export default function ExampleNavbarFour() {
                           fill="white"
                         />
                       </svg> */}
-                      <img 
-                      className="m-0 p-0 w-14 h-14"src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTsNzXnQ3DZVtU8RteFSaX9-UAvwErM_fk_DPPRjWDufrHpQ7wp"    alt="" />
+                      <img
+                        className="m-0 p-0 w-14 h-14"
+                        src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTsNzXnQ3DZVtU8RteFSaX9-UAvwErM_fk_DPPRjWDufrHpQ7wp"
+                        alt=""
+                      />
                     </span>
                     <span className="font-bold text-white">Crushers</span>
                   </div>
