@@ -57,13 +57,13 @@ export default function ExampleNavbarFour() {
     }
   }, [inputUser]);
   return (
-    <div className="w-full py-2 min-h-[10vh] bg-black sticky top-0 z-20">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <div className="inline-flex items-center space-x-2">
+    <div className="w-full py-2 min-h-[10vh] sticky top-0  z-20 bg-black ">
+      <div className="mx-auto flex max-w-7xl items-center   justify-between px-4 py-3 sm:px-6 lg:px-8">
+        <div className="inline-flex items-center space-x-2 ">
           <span>
             <img
               src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTsNzXnQ3DZVtU8RteFSaX9-UAvwErM_fk_DPPRjWDufrHpQ7wp"
-              className="m-0  p-0 md:w-16 md:h-16 w-12 h-12"
+              className="m-0  p-0 md:w-16 md:h-16 w-12 rounded-lg h-12"
               height={50}
               width={50}
               alt=""
@@ -85,7 +85,7 @@ export default function ExampleNavbarFour() {
         </div>
         <div className="hidden grow lg:block">
           <ul className="ml-12 inline-flex space-x-8">
-            {(userData?menuItems:menuForUnknown).map((item) => (
+            {(userData ? menuItems : menuForUnknown).map((item) => (
               <li key={item.name}>
                 <Link
                   to={item.href}
@@ -99,35 +99,36 @@ export default function ExampleNavbarFour() {
               </li>
             ))}
           </ul>
-        </div>{
-          userData?
-        <div className="flex relative grow md:justify-end justify-center">
-          <input
-            className="flex h-10 md:w-[400px] w-[250px] rounded-md bg-gray-200 px-3 py-2 placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-white/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 text-lg"
-            type="text"
-            placeholder="Search"
-            onClick={(e) => e.currentTarget.select()}
-            onChange={(e) => setInputUser(e.target.value)}
-          ></input>
-          <div
-            onClick={() => {
-              setItems([]);
-            }}
-            className="absolute z-10 shadow-lg shadow-black top-12 no-scrollbar max-h-[40vh] overflow-auto cursor-pointer  rounded-xl "
-          >
-            {loading ? (
-              <div className="overflow-hidden flex justify-center md:w-[400px] w-[250px] h-12 items-center bg-gray-300 font-bolder ">
-                <ClipLoader />
-              </div>
-            ) : (
-              items &&
-              items.length >= 0 &&
-              items.map((eachitems) => (
-                <UserCard key={eachitems.$id} result={eachitems} />
-              ))
-            )}
+        </div>
+        {userData ? (
+          <div className="flex relative grow md:justify-end justify-center">
+            <input
+              className="flex h-10 md:w-[400px] w-[250px] rounded-md bg-gray-200 px-3 py-2 placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-white/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 text-lg"
+              type="text"
+              placeholder="Search"
+              onClick={(e) => e.currentTarget.select()}
+              onChange={(e) => setInputUser(e.target.value)}
+            ></input>
+            <div
+              onClick={() => {
+                setItems([]);
+              }}
+              className="absolute z-10 shadow-lg shadow-black top-12 no-scrollbar max-h-[40vh] overflow-auto cursor-pointer  rounded-xl "
+            >
+              {loading ? (
+                <div className="overflow-hidden flex justify-center md:w-[400px] w-[250px] h-12 items-center bg-gray-300 font-bolder ">
+                  <ClipLoader />
+                </div>
+              ) : (
+                items &&
+                items.length >= 0 &&
+                items.map((eachitems) => (
+                  <UserCard key={eachitems.$id} result={eachitems} />
+                ))
+              )}
+            </div>
           </div>
-        </div>:null}
+        ) : null}
         <Link to="/profile">
           <div className="md:ml-14 mt-2 hidden lg:block ">
             <span className="relative inline-block ">
@@ -182,7 +183,7 @@ export default function ExampleNavbarFour() {
                 </div>
                 <div className="mt-6">
                   <nav className="grid gap-y-4">
-                    {(userData?menuItems:menuForUnknown).map((item) => (
+                    {(userData ? menuItems : menuForUnknown).map((item) => (
                       <Link
                         onClick={toggleMenu}
                         key={item.name}

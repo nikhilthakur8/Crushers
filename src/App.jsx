@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { getUser, logout, userLogin } from "./appwrite/auth";
 import { useDispatch } from "react-redux";
 import { login, logout as userLogout } from "./features/User";
-import { getUserById } from "./appwrite/config";
+import Notification from "./Components/Notification";
 function App() {
   const userData = isAuthenticated();
   const [validUser, setValidUser] = useState(false);
@@ -34,11 +34,12 @@ function App() {
   }, []);
   return (
     validUser && (
-      <Container style="bg-green-400">
+      < >
+        <Notification/>
         <NavBar />
         <Outlet />
         <Footer />
-      </Container>
+      </>
     )
   );
 }
