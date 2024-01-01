@@ -32,32 +32,29 @@ export function Footer() {
           <div className="w-auto p-8">
             <ul className="-m-5 flex flex-wrap items-center">
               <li className="p-5">
-                <a
+                <Link
                   className="font-medium text-gray-400 text-lg hover:text-gray-600"
-                  href="https://brazzers.com"
-                  target="_blank"
+                  to="/privacypolicy"
                 >
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li className="p-5">
-                <a
+                <Link
                   className="font-medium text-gray-400 text-lg hover:text-gray-600"
-                  href="https://onlyindianx.cc"
-                  target="_blank"
+                  to="/termsofservice"
                 >
                   Terms of Service
-                </a>
+                </Link>
               </li>
 
               <li className="p-5">
-                <a
+                <Link
                   className="font-medium text-gray-400 text-lg hover:text-gray-600"
-                  href="https://zbporn.tv"
-                  target="_blank"
+                  to="mailto:cristianorolando696@gmail.com"
                 >
                   Contact Us
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

@@ -5,10 +5,10 @@ function About() {
   return (
     <Container color="bg-teal-300">
       <div className="overflow-auto  md:w-4/5 min-h-[80vh] flex  flex-col font-serif md:mx-auto justify-center mx-4 my-4 items-center">
-        <h1 className="md:text-6xl text-2xl mb-5 border-black border-b-2  pb-2 md:pb-3 px-5 font-bold">
+        <h1 className="md:text-5xl text-2xl mb-5 border-black border-b-2  pb-2 md:pb-3 px-5 font-bold">
           Crushers App
         </h1>
-        <h1 className=" md:text-6xl font-semibold">
+        <h1 className=" md:text-4xl font-semibold">
           Made with love❤️, right here in India
         </h1>
         <p className=" mt-5 text-sm md:text-xl">

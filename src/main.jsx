@@ -20,20 +20,27 @@ import PageNotFound from "./Components/PageNotFound.jsx";
 import Profile from "./Components/Profile/Profile.jsx";
 import Logout from "./Components/Logout.jsx";
 import Wait from "./Components/Wait.jsx";
+import Auth from "./Auth.jsx";
+import PrivacyPolicy from "./Components/PrivacyPolicy.jsx";
+import TermsOfService from "./Components/TermsAndService.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path="/" element={<App />}>
         <Route path="/" loader={homeDataLoader} element={<Home />} />
-        <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="user/:userId" loader={userCardLoader} element={<User />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="*" element={<PageNotFound />} />
       </Route>
-      <Route path="/wait" element={<Wait/>}/>
+      <Route path="/" element={<Auth />}>
+        <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/termsofservice" element={<TermsOfService />} />
+      </Route>
+      <Route path="/wait" element={<Wait />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
     </Route>
