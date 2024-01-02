@@ -91,14 +91,14 @@ function Signup() {
               },
             })}
           />
-
+          <p className="text-white text-xs -mt-3 mb-3">By proceeding, you are indicating that you have read and agree to our <Link to="/termsofservice" className="underline"> Terms of Service </Link> & <Link to="/PrivacyPolicy" className="underline"> Privacy Policy </Link></p>
           <TrailingIconButtons
             loading={loading}
             type={"submit"}
             text={"Create Account"}
           />
         </form>
-        <div className="mt-6">
+        <div className="mt-5">
           <p className="text-white/70 text-center">
             Already have an account?
             <Link to="/login" className="text-white font-serif">
