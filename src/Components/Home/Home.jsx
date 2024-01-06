@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { useEffect, useState } from "react";
+import {useEffect, useState } from "react";
 import Container from "../Container/Container";
 import { RandomUserList } from "../../appwrite/config";
 import UserCard from "./UserCard";
