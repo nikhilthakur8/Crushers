@@ -28,7 +28,7 @@ function User() {
         <RWebShare
           data={{
             text: `Take a look at the profile of ${user.fullName}!`,
-            url: `\ncrushers.vercel.app/user/${user.$id}`,
+            url: `user/${user.$id}`,
             title: "Share profile with friends",
           }}
           onClick={() => console.log("shared successfully!")}
