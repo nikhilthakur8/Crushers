@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 
 import { ExternalLink } from "lucide-react";
-import { Link } from "react-router-dom";
 
 function Para({ text, output }) {
   return (
@@ -17,13 +16,13 @@ function Para({ text, output }) {
             output
           )}`} rel="noreferrer"
         >
-          <ExternalLink className="w-10 h-7 rounded-md text-blue-500 bg-white p-0.5 active:text-white active:bg-black font-semibold" />
+          <ExternalLink className="w-10 h-7 rounded-md bg-indigo-700 text-gray-300 p-1  shadow-lg active:text-white active:bg-black font-semibold" />
         </a>
       )}
 
       {text === "Phone No. " && (
-        <a className="m-0 justify-self-end p-0" target="_blank" href={`tel:+91${output}`} rel="noreferrer">
-          <ExternalLink className="w-10 h-7  rounded-md text-blue-500 bg-white p-0.5 active:text-white active:bg-black font-semibold" />
+        <a className="m-0 justify-self-end p-0" target="_blank" href={`https://wa.me/91${output}`} rel="noreferrer">
+          <ExternalLink className="w-10 h-7  rounded-md bg-indigo-700 text-gray-300 p-1  shadow-lg active:text-white active:bg-black font-semibold" />
         </a>
       )}
     </div>
