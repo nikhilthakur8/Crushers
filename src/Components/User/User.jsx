@@ -34,7 +34,7 @@ function User() {
           }}
           onClick={() => console.log("shared successfully!")}
         >
-          <Share2 className="w-10 h-7 md:w-12 md:h-10 rounded-md shadow-lg bg-indigo-700 text-gray-300 p-1 active:text-white active:bg-black font-semibold" />
+          <Share2 className="w-10 cursor-pointer h-7 md:w-12 md:h-10 rounded-md shadow-lg bg-indigo-700 text-gray-300 p-1 active:text-white active:bg-black font-semibold" />
         </RWebShare>
       </div>
       <div

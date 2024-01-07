@@ -11,7 +11,7 @@ function Para({ text, output }) {
       </div>
       {text === "Address:" && (
         <a target="_blank"
-          className="m-0 p-0"
+          className="m-0 p-0 "
           href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
             output
           )}`} rel="noreferrer"
