@@ -2,6 +2,7 @@
 import Container from "./Container/Container";
 
 export default function ErrorOne() {
+  document.title = "404 - Page not found"
   return (
     <Container>
     <div className="flex h-[70vh] items-center justify-center px-2 mx-5 md:px-0">

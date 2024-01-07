@@ -2,6 +2,7 @@
 import Container from "../Container/Container";
 
 function About() {
+  document.title = `About - Crushers`;
   return (
     <Container color="bg-teal-300">
       <div className="overflow-auto  md:w-4/5 min-h-[80vh] flex  flex-col font-serif md:mx-auto justify-center mx-4 my-4 items-center">

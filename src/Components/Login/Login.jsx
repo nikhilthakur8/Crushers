@@ -11,6 +11,7 @@ import { AlertBanner } from "../AlertBanner";
 import { encryptData } from "../../Jwt/auth";
 
 function Login() {
+  document.title = "Login - Crushers"
   const {
     handleSubmit,
     register,

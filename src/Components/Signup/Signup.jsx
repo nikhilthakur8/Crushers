@@ -22,6 +22,7 @@ function Signup() {
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  document.title = "Signup - Crushers"
   function onSubmit(data) {
     setLoading(true);
     reset();

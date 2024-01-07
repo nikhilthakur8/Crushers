@@ -20,6 +20,7 @@ function User() {
   const requestingUser = useSelector((state) => state.userData);
   useEffect(() => {
     setUser(userData);
+    document.title = `${userData.fullName} - Crushers`
     updateTheSeenBy(requestingUser, userId, userData);
   }, [userData]);
   return (

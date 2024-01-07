@@ -3,6 +3,7 @@
 import { Link } from "react-router-dom";
 
 const TermsOfService = () => {
+  document.title = "Terms of Service - Crushers"
   return (
     <div className="bg-gray-900 text-gray-200 p-8">
       <h1 className="text-3xl font-bold mb-4">Terms of Service</h1>

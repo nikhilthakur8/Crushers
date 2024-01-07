@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 
 function Wait() {
   const userData = useSelector((state) => state.userData);
+  document.title = "Wait - Crushers"
   return !userData ? (
     <Navigate to="/login" />
   ) : (

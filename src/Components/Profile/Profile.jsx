@@ -7,11 +7,12 @@ import { isAuthenticated } from "../../Jwt/isAuthenticated";
 function Profile() {
   const [imgLink, setImageLink] = useState(
     "https://cdn-icons-png.flaticon.com/512/219/219970.png"
-  );
-  const filePreview = (file) => {
-    setImageLink(URL.createObjectURL(file));
-  };
-  const userData = isAuthenticated();
+    );
+    const filePreview = (file) => {
+      setImageLink(URL.createObjectURL(file));
+    };
+    const userData = isAuthenticated();
+    document.title = `Profile - Crushers`
   return (
     <Container>
       <div className="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-2xl sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto  my-14 bg-white shadow-xl  rounded-lg text-gray-900 flex flex-col">

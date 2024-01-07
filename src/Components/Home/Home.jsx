@@ -9,6 +9,7 @@ export const homeDataLoader = async () => {
   return await RandomUserList();
 };
 function Home() {
+  document.title = "Crushers | Person details finder"
   const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(true);
   const data = useLoaderData();
