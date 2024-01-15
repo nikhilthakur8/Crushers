@@ -21,7 +21,7 @@ function Para({ text, output }) {
       )}
 
       {text === "Phone No. " && (
-        <a className="m-0 justify-self-end p-0" target="_blank" href={`tel:91${output}`} rel="noreferrer">
+        <a className="m-0 justify-self-end p-0" target="_blank" href={`tel:${output}`} rel="noreferrer">
           <ExternalLink className="w-10 h-7 md:w-12 md:h-10  rounded-md bg-indigo-700 text-gray-300 p-1  shadow-lg active:text-white active:bg-black font-semibold" />
         </a>
       )}
