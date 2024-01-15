@@ -8,7 +8,7 @@ function UserCard({ user }) {
   return (
 
     <Link to={`/user/${user.$id}`}>
-      <div className="relative flex flex-col text-gray-700 shadow-md bg-clip-border bg-gray-300 rounded-xl ">
+      <div className="relative flex flex-col text-gray-700 shadow-md bg-clip-border bg-gray-400 rounded-xl ">
         <div className="relative mx-4 mt-4 flex justify-center items-center overflow-hidden text-gray-700 bg-white/60 shadow-xl bg-clip-border rounded-xl md:h-60 h-32">
           <img className={`md:w-40 w-24 rounded-md overflow-hidden ${loading &&"hidden"}`} src={user.imgLink} alt="profile-picture" onLoad={()=>setLoading(false)}/>
           <div className={`w-full h-full flex justify-center items-center ${!loading &&"hidden"}`}>
