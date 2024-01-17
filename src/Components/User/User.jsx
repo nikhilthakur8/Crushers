@@ -2,12 +2,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import Para from "../Para";
-import { useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 import { getUserById, updateTheSeenBy } from "../../appwrite/config";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useSelector } from "react-redux";
 import { RWebShare } from "react-web-share";
 import { Share2 } from "lucide-react";
+import { TrailingIconButtons } from "../Button";
 export const userCardLoader = async ({ params }) => {
   const res = await getUserById(params.userId);
   return res;
@@ -20,11 +21,12 @@ function User() {
   const requestingUser = useSelector((state) => state.userData);
   useEffect(() => {
     setUser(userData);
-    document.title = `${userData.fullName} - Crushers`
+    document.title = `${userData.fullName} - Crushers`;
     updateTheSeenBy(requestingUser, userId, userData);
   }, [userData]);
   return (
-    <div className="shadow-xl shadow-black  md:w-/6  mx-auto px-auto w-[90%] md:min-h-[78vh]  md:px-1 my-6 mb-8 py-5  rounded-lg bg-purple-700/90 md:rounded-3xl flex justify-center items-start  flex-col relative md:flex-row">
+    <>
+    <div className="shadow-xl shadow-black  md:w-/6  mx-auto px-auto w-[90%] md:min-h-[70vh]  md:px-1 mt-6  py-5  rounded-t-lg bg-purple-700/90 md:rounded-t-3xl flex  flex-col relative md:flex-row">
       <div className="self-end absolute top-5 right-5">
         <RWebShare
           data={{
@@ -65,6 +67,13 @@ function User() {
         <Para text={"Time :"} output={user.time} />
       </div>
     </div>
+    <div className="w-[90%] bg-slate-900 mb-8 relative p-2 text-base md:text-xl lg:text-2xl rounded-b-lg text-white md:rounded-b-3xl text-center mx-auto ">Total Views : {userData.seenBy.length}</div>
+    {requestingUser.labels.includes("admin") && 
+    <Link to={`/admin/user/analytics/${userData.$id}`} className="block w-56 mx-auto mb-6 rounded-md">
+    <TrailingIconButtons text="View Analytics"></TrailingIconButtons>
+    </Link>
+    }
+    </>  
   );
 }
 

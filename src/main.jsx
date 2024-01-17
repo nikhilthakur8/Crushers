@@ -23,6 +23,7 @@ import Wait from "./Components/Wait.jsx";
 import Auth from "./Auth.jsx";
 import PrivacyPolicy from "./Components/PrivacyPolicy.jsx";
 import TermsOfService from "./Components/TermsAndService.jsx";
+import UserAnalytics from "./Components/User Analytics/UserAnalytics.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -34,6 +35,9 @@ const router = createBrowserRouter(
         <Route path="/profile" element={<Profile />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="*" element={<PageNotFound />} />
+        <Route path="/admin">
+          <Route path="user/analytics/:userId" element={<UserAnalytics />} />
+        </Route>
       </Route>
       <Route path="/" element={<Auth />}>
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
