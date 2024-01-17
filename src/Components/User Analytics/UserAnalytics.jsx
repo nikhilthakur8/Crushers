@@ -9,7 +9,7 @@ function UserAnalytics() {
   const userData = useSelector((state) => state.userData);
   const navigate = useNavigate();
   useEffect(() => {
-    if (userData.labels.includes("admin")) navigate(-1);
+    if (!userData.labels.includes("admin")) navigate(-1);
     else {
       getUserById(userId).then((userData) => {
         setUser(userData);
