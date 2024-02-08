@@ -7,7 +7,9 @@ import { Link } from "react-router-dom";
 import LoadingBar from "react-top-loading-bar";
 
 export const Search = () => {
-    window.scrollTo(0, -200);
+    useEffect(() => {
+        window.scrollTo(0, -200);
+    }, []);
     const { register, handleSubmit, reset } = useForm();
     const [documents, setDocuments] = useState([]);
     const [user, setUser] = useState([]);
