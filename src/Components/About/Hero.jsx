@@ -8,7 +8,7 @@ export const Hero = () => {
     console.log(user);
     return (
         <div
-            className="bg-blue-500 py-4 rounded-b- mb-5"
+            className="py-4 rounded-b- mb-5"
             style={{
                 backgroundImage:
                     'url("https://t4.ftcdn.net/jpg/03/09/24/63/240_F_309246316_uXQOS2tcdUceurcmAJprpxBbbktiSW0C.jpg")',
