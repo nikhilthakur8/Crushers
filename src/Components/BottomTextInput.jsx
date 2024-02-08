@@ -7,6 +7,7 @@ const BottomTextInput =  React.forwardRef(function BottomTextInput({
   errors,
 	...props
 },ref) {
+  
   return (
     <div className="w-full my-6">
       <label

@@ -3,10 +3,10 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import {
-  Route,
-  RouterProvider,
-  createBrowserRouter,
-  createRoutesFromElements,
+    Route,
+    RouterProvider,
+    createBrowserRouter,
+    createRoutesFromElements,
 } from "react-router-dom";
 import About from "./Components/About/About.jsx";
 import Contact from "./Components/Contact/Contact.jsx";
@@ -24,37 +24,46 @@ import Auth from "./Auth.jsx";
 import PrivacyPolicy from "./Components/PrivacyPolicy.jsx";
 import TermsOfService from "./Components/TermsAndService.jsx";
 import UserAnalytics from "./Components/User Analytics/UserAnalytics.jsx";
+import { Search } from "./Components/Search/Search.jsx";
 
 const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route>
-      <Route path="/" element={<App />}>
-        <Route path="/" loader={homeDataLoader} element={<Home />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="user/:userId" loader={userCardLoader} element={<User />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/logout" element={<Logout />} />
-        <Route path="*" element={<PageNotFound />} />
-        <Route path="/admin">
-          <Route path="user/analytics/:userId" element={<UserAnalytics />} />
+    createRoutesFromElements(
+        <Route>
+            <Route path="/" element={<App />}>
+                <Route path="/" loader={homeDataLoader} element={<Home />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route
+                    path="user/:userId"
+                    loader={userCardLoader}
+                    element={<User />}
+                />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/logout" element={<Logout />} />
+                <Route path="/search" element={<Search />} />
+                <Route path="*" element={<PageNotFound />} />
+                <Route path="/admin">
+                    <Route
+                        path="user/analytics/:userId"
+                        element={<UserAnalytics />}
+                    />
+                </Route>
+            </Route>
+            <Route path="/" element={<Auth />}>
+                <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/termsofservice" element={<TermsOfService />} />
+            </Route>
+            <Route path="/wait" element={<Wait />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
         </Route>
-      </Route>
-      <Route path="/" element={<Auth />}>
-        <Route path="/privacypolicy" element={<PrivacyPolicy />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/termsofservice" element={<TermsOfService />} />
-      </Route>
-      <Route path="/wait" element={<Wait />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
-    </Route>
-  )
+    )
 );
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
-  </React.StrictMode>
+    <React.StrictMode>
+        <Provider store={store}>
+            <RouterProvider router={router} />
+        </Provider>
+    </React.StrictMode>
 );

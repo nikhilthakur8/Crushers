@@ -1,11 +1,14 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
 
 function Notification() {
-	return (
-		<div className='p-0.5 bg-blue-700/70 text-gray-300   font-semibold  text-center'>
-			We have added 200 more profile 😀😀 
-		</div>
-	)
+    return (
+        <Link to={"/search"}>
+            <div className=" py-1 bg-blue-950 text-white cursor-pointer   font-semibold  text-center">
+                Introducing Advance Search Option 🔎🔎
+            </div>
+        </Link>
+    );
 }
 
-export default Notification
+export default Notification;
