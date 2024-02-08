@@ -42,9 +42,10 @@ export const Search = () => {
             targetRef.current.scrollIntoView({ behavior: "smooth" });
         }
     };
-
+    const [searchName, setSearchName] = useState();
     function search(e) {
         const searchQuery = e.target.value;
+        setSearchName(searchQuery);
         if (searchQuery) {
             const filteredNames = user.filter(({ fullName }) =>
                 fullName.toLowerCase().includes(searchQuery.toLowerCase())
@@ -65,7 +66,7 @@ export const Search = () => {
     }
     return (
         <div className="w-full sm:w-2/3 md:w-1/2 bg-gray-100 mx-auto p-5 sm:my-5 rounded-xl">
-            <LoadingBar height={5} ref={ref} color="yellow" />
+            <LoadingBar height={6} ref={ref} color="orange" />
             <form onSubmit={handleSubmit(onSubmit)}>
                 <h1 className="text-3xl font-semibold font-serif text-blue-900 ">
                     Search your Friend
@@ -149,7 +150,7 @@ export const Search = () => {
                             reset({
                                 branch: "",
                                 phoneNo: undefined,
-                                DOB: undefined,
+                                DOB: "",
                             });
                         }}
                     >
@@ -162,7 +163,7 @@ export const Search = () => {
                         Search Now
                     </button>
                 </div>
-                <div className="bg-blue-200 my-10 p-8" ref={targetRef}>
+                <div className="bg-blue-200 my-10 px-5 py-5" ref={targetRef}>
                     <div className="w-full">
                         <label
                             htmlFor="fullName"
@@ -178,42 +179,46 @@ export const Search = () => {
                             placeholder="Search Name "
                         />
                         <ul className="mt-5">
-                            {(
-                                (filteredNames.length > 0 && filteredNames) ||
-                                user
-                            ).map((eachUser, index) => {
-                                return (
-                                    <li
-                                        key={index}
-                                        className="bg-blue-100 hover:scale-105 transition-all duration-300   py-3 pl-3 rounded-md font-semibold my-4"
-                                    >
-                                        <Link
-                                            to={`/user/${eachUser.$id}`}
-                                            className="flex items-center"
+                            {filteredNames.length == 0 && user.length == 0 && (
+                                <div className="text-center text-xl font-semibold">
+                                    No Result Found
+                                </div>
+                            )}
+                            {(searchName ? filteredNames : user).map(
+                                (eachUser, index) => {
+                                    return (
+                                        <li
+                                            key={index}
+                                            className="bg-blue-100 hover:scale-105 transition-all duration-300   py-3 pl-3 rounded-md font-semibold my-4"
                                         >
-                                            <div>
-                                                <img
-                                                    src={eachUser.imgLink}
-                                                    className="w-16 object-fill rounded-md border border-black"
-                                                />
-                                            </div>
-                                            <div className="flex flex-col w-full px-5 py-2 space-y-">
-                                                <p className="text-sm">
-                                                    {eachUser.fullName}
-                                                </p>
-                                                <div className="flex space-x-5 text-sm">
-                                                    <p>{eachUser.branch}</p>
-                                                    <p className="hidden sm:inline">
-                                                        DOB: {eachUser.DOB}
-                                                    </p>
+                                            <Link
+                                                to={`/user/${eachUser.$id}`}
+                                                className="flex items-center"
+                                            >
+                                                <div>
+                                                    <img
+                                                        src={eachUser.imgLink}
+                                                        className="w-16 object-fill rounded-md border border-black"
+                                                    />
                                                 </div>
-                                            </div>
-                                        </Link>
-                                    </li>
-                                );
-                            })}
+                                                <div className="flex flex-col w-full px-5 py-2 space-y-">
+                                                    <p className="text-base">
+                                                        {eachUser.fullName}
+                                                    </p>
+                                                    <div className="flex space-x-5 text-sm">
+                                                        <p>{eachUser.branch}</p>
+                                                        <p className="hidden sm:inline">
+                                                            DOB: {eachUser.DOB}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </Link>
+                                        </li>
+                                    );
+                                }
+                            )}
                         </ul>
-                        {currentPage !== totalPage && (
+                        {currentPage !== totalPage && totalPage !== 0 && (
                             <div className="flex justify-center mt-10 mb-5">
                                 <button
                                     type="button"

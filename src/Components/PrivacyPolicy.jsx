@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 const PrivacyPolicy = () => {
   document.title = "Privacy Policy - Crushers"
+  window.scrollTo(0, -200);
+
   return (
     <div className="bg-gray-900 min-h-dvh text-gray-200 p-8">
       <h1 className="text-3xl font-bold mb-4">Privacy Policy</h1>

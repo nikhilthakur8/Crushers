@@ -56,7 +56,6 @@ export const searchFriend = async ({ branch, phoneNo, isLE, DOB }) => {
         service.appwriteCollectionId,
         query
     );
-    console.log(users);
     return users;
 };
 

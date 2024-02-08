@@ -5,7 +5,6 @@ import Typewriter from "typewriter-effect";
 
 export const Hero = () => {
     const user = useSelector((state) => state.userData);
-    console.log(user);
     return (
         <div
             className="py-4 rounded-b- mb-5"

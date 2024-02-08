@@ -17,23 +17,17 @@ function User() {
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState([]);
     const userData = useLoaderData();
-    const ref = useRef(null);
     const { userId } = useParams();
     const requestingUser = useSelector((state) => state.userData);
     useEffect(() => {
         setUser(userData);
         document.title = `${userData.fullName} - Crushers`;
         updateTheSeenBy(requestingUser, userId, userData);
-        if (ref.current) {
-            ref.current.scrollIntoView({ behavior: "smooth" });
-        }
+        window.scrollTo(0, -200);
     }, [userData]);
     return (
         <>
-            <div
-                ref={ref}
-                className="shadow-xl shadow-black  md:w-/6  mx-auto px-auto w-[90%] md:min-h-[70vh]  md:px-1 mt-6  py-5  rounded-t-lg bg-purple-700/90 md:rounded-t-3xl flex  flex-col relative md:flex-row"
-            >
+            <div className="shadow-xl shadow-black  md:w-/6  mx-auto px-auto w-[90%] md:min-h-[70vh]  md:px-1 mt-6  py-5  rounded-t-lg bg-purple-700/90 md:rounded-t-3xl flex  flex-col relative md:flex-row">
                 <div className="self-end absolute top-5 right-5">
                     <RWebShare
                         data={{
@@ -41,7 +35,6 @@ function User() {
                             url: `/user/${user.$id}`,
                             title: "Share profile with friends",
                         }}
-                        onClick={() => console.log("shared successfully!")}
                     >
                         <Share2 className="w-10 cursor-pointer h-7 md:w-12 md:h-10 rounded-md shadow-lg bg-indigo-700 text-gray-300 p-1 active:text-white active:bg-black font-semibold" />
                     </RWebShare>

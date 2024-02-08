@@ -22,7 +22,6 @@ export const userLogin = async ({ email, password }) => {
         const userAccount = account.createEmailSession(email, password);
         return userAccount;
     } catch (error) {
-        console.log(error);
         return error;
     }
 };
