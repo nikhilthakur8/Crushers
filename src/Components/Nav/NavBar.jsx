@@ -5,7 +5,6 @@ import { searchUserByKeyword } from "../../appwrite/config";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import LoadingBar from "react-top-loading-bar";
 
 const menuItems = [
     {

@@ -37,8 +37,8 @@ export const searchUserByKeyword = async (keyword) => {
     });
     return users;
 };
-export const getPhotoPreview = (fileId) => {
-    return storage.getFilePreview(service.appwriteBucketId, fileId);
+export const getPhotoPreview = (fileId, quality = 80) => {
+    return storage.getFilePreview(service.appwriteBucketId, fileId, quality);
 };
 export const searchFriend = async ({ branch, phoneNo, isLE, DOB }) => {
     const query = [Query.limit(1057)];
@@ -65,7 +65,8 @@ export const getUserById = async (userId) => {
         service.appwriteCollectionId,
         userId
     );
-    user["imgLink"] = getPhotoPreview(user.image);
+
+    user["imgLink"] = getPhotoPreview(user.image, 100);
     return user;
 };
 

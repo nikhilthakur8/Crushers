@@ -7,32 +7,74 @@ import { getUserById, updateTheSeenBy } from "../../appwrite/config";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useSelector } from "react-redux";
 import { RWebShare } from "react-web-share";
-import { Share2 } from "lucide-react";
+import { Share2, Unlock } from "lucide-react";
 import { TrailingIconButtons } from "../Button";
-export const userCardLoader = async ({ params }) => {
-    const res = await getUserById(params.userId);
-    return res;
-};
+import { UnlockMessage } from "./UnlockMessage";
 function User() {
     const [loading, setLoading] = useState(true);
-    const [user, setUser] = useState([]);
-    const userData = useLoaderData();
+    const [user, setUser] = useState();
     const { userId } = useParams();
+    const [pageLoading, setPageLoading] = useState(true);
     const requestingUser = useSelector((state) => state.userData);
     useEffect(() => {
-        setUser(userData);
-        document.title = `${userData.fullName} - Crushers`;
-        updateTheSeenBy(requestingUser, userId, userData);
         window.scrollTo(0, -200);
-    }, [userData]);
-    return (
+        setPageLoading(true);
+        getUserById(userId)
+            .then((userData) => {
+                document.title = `${userData.fullName} - Crushers`;
+                if (
+                    userData.AccessedBy.includes(requestingUser) ||
+                    requestingUser
+                ) {
+                    setUser(userData);
+                    updateTheSeenBy(requestingUser, userId, userData);
+                } else {
+                    const profile = {
+                        $id: userData.$id,
+                        imgLink: userData.imgLink,
+                    };
+                    setUser(profile);
+                }
+            })
+            .finally(() => setPageLoading(false));
+    }, [userId]);
+    return pageLoading ? (
         <>
-            <div className="shadow-xl shadow-black  md:w-/6  mx-auto px-auto w-[90%] md:min-h-[70vh]  md:px-1 mt-6  py-5  rounded-t-lg bg-purple-700/90 md:rounded-t-3xl flex  flex-col relative md:flex-row">
+            <div className="min-h-[80vh] flex justify-center">
+                <img
+                    src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTsNzXnQ3DZVtU8RteFSaX9-UAvwErM_fk_DPPRjWDufrHpQ7wp"
+                    alt=""
+                    className="my-auto hover:opacity-80 opacity-60 rounded-full"
+                />
+            </div>
+            {/* <div
+                style={{
+                    width: "100%",
+                    height: "0",
+                    paddingBottom: "100%",
+                    position: "relative,",
+                }}
+            >
+                <iframe
+                    src="https://giphy.com/embed/l3nWhI38IWDofyDrW"
+                    width="100%"
+                    height="100%"
+                    style={{ position: "absolute", bottom: -44 }}
+                    className="giphy-embed"
+                    allowFullScreen
+                ></iframe>
+            </div> */}
+        </>
+    ) : (
+        <>
+            {!user?.Address && <UnlockMessage />}
+
+            <div className="shadow-xl shadow-black  mx-auto px-auto w-[90%] md:min-h-[70vh]  md:px-1 mt-6  py-5  rounded-t-lg bg-purple-700/90 md:rounded-t-3xl flex  flex-col relative md:flex-row">
                 <div className="self-end absolute top-5 right-5">
                     <RWebShare
                         data={{
-                            text: `Take a look at the profile of ${user.fullName}!`,
-                            url: `/user/${user.$id}`,
+                            text: `Take a look at the profile of ${user?.fullName}!`,
+                            url: `/user/${user?.$id}`,
                             title: "Share profile with friends",
                         }}
                     >
@@ -44,7 +86,7 @@ function User() {
         flex justify-center items-center"
                 >
                     <img
-                        src={user.imgLink}
+                        src={user?.imgLink}
                         className={`rounded-md border h-full w-full border-black shadow-lg ${
                             loading && "hidden"
                         } `}
@@ -56,23 +98,23 @@ function User() {
                 </div>
 
                 <div className="w-full md:w-2/3 my-auto">
-                    <Para text={"Name:"} output={user.fullName} />
-                    <Para text={"Branch:"} output={user.branch} />
-                    <Para text={"Roll No. "} output={user.rollNo} />
-                    <Para text={"DOB :"} output={user.DOB} />
-                    <Para text={"Blood Group:"} output={user.bloodGroup} />
-                    <Para text={"Phone No. "} output={user.mobileNumber} />
-                    <Para text={"Address:"} output={user.Address} />
-                    <Para text={"Date:"} output={user.date} />
-                    <Para text={"Time :"} output={user.time} />
+                    <Para text={"Name:"} output={user?.fullName} />
+                    <Para text={"Branch:"} output={user?.branch} />
+                    <Para text={"Roll No. "} output={user?.rollNo} />
+                    <Para text={"DOB :"} output={user?.DOB} />
+                    <Para text={"Blood Group:"} output={user?.bloodGroup} />
+                    <Para text={"Phone No. "} output={user?.mobileNumber} />
+                    <Para text={"Address:"} output={user?.Address} />
+                    <Para text={"Date:"} output={user?.date} />
+                    <Para text={"Time :"} output={user?.time} />
                 </div>
             </div>
             <div className="w-[90%] bg-slate-900 mb-8 relative p-2 text-base md:text-xl lg:text-2xl rounded-b-lg text-white md:rounded-b-3xl text-center mx-auto ">
-                Total Views : {userData.seenBy.length}
+                Total Views : {user?.seenBy?.length || "XX"}
             </div>
-            {requestingUser.labels.includes("admin") && (
+            {requestingUser.labels.includes("admin") && user && (
                 <Link
-                    to={`/admin/user/analytics/${userData.$id}`}
+                    to={`/admin/user/analytics/${user?.$id}`}
                     className="block w-56 mx-auto mb-6 rounded-md"
                 >
                     <TrailingIconButtons text="View Analytics"></TrailingIconButtons>

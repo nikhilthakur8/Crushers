@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Container from "../Container/Container";
 import { RandomUserList } from "../../appwrite/config";
 import UserCard from "./UserCard";
@@ -14,33 +14,34 @@ function Home() {
     document.title = "Crushers | Person details finder";
     const [user, setUser] = useState([]);
     const [loading, setLoading] = useState(true);
-    const data = useLoaderData();
     useEffect(() => {
-        setUser(data);
-        setLoading(false);
-    }, [data]);
+        RandomUserList().then((data) => {
+            setUser(data);
+            setLoading(false);
+        });
+    }, []);
     return (
         <Container color="bg-blue-50">
-            {loading ? (
-                <div className="w-full  h-[80vh] flex justify-center items-center">
-                    <ClipLoader size={100} />
-                </div>
-            ) : (
-                <div
-                    style={{
-                        backgroundImage:
-                            'url("https://img.freepik.com/premium-photo/blue-sky-watercolor-effect-stains-paint-splatter-grunge-background-texture-soft-blue-pastel-website-banner-design_364465-1395.jpg")',
-                        width: "100%",
-                        height: "auto",
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                        backgroundColor: "rgba(255, 255, 255, 0.2)",
-                    }}
-                >
-                    <Hero />
-                    <h1 className="text-xl mx-3 px-1 pb-1 md:mx-10 inline font-semibold text-blue-800 font-serif border-b-2 border-black">
-                        Random Profile
-                    </h1>
+            <Hero />
+            <div
+                style={{
+                    backgroundImage:
+                        'url("https://img.freepik.com/premium-photo/blue-sky-watercolor-effect-stains-paint-splatter-grunge-background-texture-soft-blue-pastel-website-banner-design_364465-1395.jpg")',
+                    width: "100%",
+                    height: "auto",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundColor: "rgba(255, 255, 255, 0.2)",
+                }}
+            >
+                <h1 className="text-xl mx-3 px-1 pb-1 md:mx-10 inline font-semibold text-blue-800 font-serif border-b-2 border-black">
+                    Random Profile
+                </h1>
+                {loading ? (
+                    <div className="w-full  h-[80vh] flex justify-center items-center">
+                        <ClipLoader size={100} />
+                    </div>
+                ) : (
                     <div
                         style={{
                             backgroundImage:
@@ -56,8 +57,9 @@ function Home() {
                             <UserCard key={eachUser.$id} user={eachUser} />
                         ))}
                     </div>
-                </div>
-            )}
+                )}
+            </div>
+
             <div
                 style={{
                     backgroundImage:
