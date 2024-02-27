@@ -37,8 +37,8 @@ export const searchUserByKeyword = async (keyword) => {
     });
     return users;
 };
-export const getPhotoPreview = (fileId, quality = 80) => {
-    return storage.getFilePreview(service.appwriteBucketId, fileId, quality);
+export const getPhotoPreview = (fileId) => {
+    return storage.getFilePreview(service.appwriteBucketId, fileId);
 };
 export const searchFriend = async ({ branch, phoneNo, isLE, DOB }) => {
     const query = [Query.limit(1057)];
@@ -66,7 +66,7 @@ export const getUserById = async (userId) => {
         userId
     );
 
-    user["imgLink"] = getPhotoPreview(user.image, 100);
+    user["imgLink"] = getPhotoPreview(user.image);
     return user;
 };
 
@@ -75,17 +75,33 @@ export const updateTheSeenBy = async (
     docId,
     { seenBy }
 ) => {
-    const reqUserDetails = JSON.stringify({
+    const reqUserDetails = {
         $id,
-        time: Date.now(),
+        time: [Date.now()],
         email,
         fullName,
+        total: 1,
+    };
+    let isSeened = false;
+
+    const updatedSeenBy = seenBy.map((eachUser) => {
+        const eachStamp = JSON.parse(eachUser);
+        if (eachStamp.email === email) {
+            eachStamp.total++;
+            eachStamp.time.unshift(Date.now());
+            isSeened = true;
+            return JSON.stringify(eachStamp);
+        }
+        return eachUser;
     });
-    const newSeenBy = [reqUserDetails, ...seenBy];
+    const newSeenBy = isSeened
+        ? null
+        : [JSON.stringify(reqUserDetails), ...seenBy];
+
     await databases.updateDocument(
         service.appwriteDatabaseId,
         service.appwriteCollectionId,
         docId,
-        { seenBy: newSeenBy }
+        { seenBy: (updatedSeenBy.length > 0 && updatedSeenBy) || newSeenBy }
     );
 };

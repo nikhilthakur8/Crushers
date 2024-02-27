@@ -27,7 +27,8 @@ function User() {
                     requestingUser
                 ) {
                     setUser(userData);
-                    updateTheSeenBy(requestingUser, userId, userData);
+                    if (!requestingUser.labels.includes("admin"))
+                        updateTheSeenBy(requestingUser, userId, userData);
                 } else {
                     const profile = {
                         $id: userData.$id,
@@ -44,7 +45,7 @@ function User() {
                 <img
                     src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTsNzXnQ3DZVtU8RteFSaX9-UAvwErM_fk_DPPRjWDufrHpQ7wp"
                     alt=""
-                    className="my-auto hover:opacity-80 opacity-60 rounded-full"
+                    className="my-auto opacity-60  rounded-full"
                 />
             </div>
             {/* <div
