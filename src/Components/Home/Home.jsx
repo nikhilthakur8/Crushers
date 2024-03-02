@@ -34,7 +34,7 @@ function Home() {
                     backgroundColor: "rgba(255, 255, 255, 0.2)",
                 }}
             >
-                <h1 className="text-xl mx-3 px-1 pb-1 md:mx-10 inline font-semibold text-blue-800 font-serif border-b-2 border-black">
+                <h1 className="text-xl mx-3 px-1  md:mx-10 inline-block font-semibold text-blue-800 font-serif border-b-2 border-black pt-5 pb-1">
                     Random Profile
                 </h1>
                 {loading ? (

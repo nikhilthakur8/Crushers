@@ -7,7 +7,7 @@ export const Hero = () => {
     const user = useSelector((state) => state.userData);
     return (
         <div
-            className="py-4 rounded-b- mb-5"
+            className="py-4"
             style={{
                 backgroundImage:
                     'url("https://t4.ftcdn.net/jpg/03/09/24/63/240_F_309246316_uXQOS2tcdUceurcmAJprpxBbbktiSW0C.jpg")',
