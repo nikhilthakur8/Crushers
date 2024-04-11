@@ -48,28 +48,10 @@ function User() {
                     className="my-auto opacity-60  rounded-full"
                 />
             </div>
-            {/* <div
-                style={{
-                    width: "100%",
-                    height: "0",
-                    paddingBottom: "100%",
-                    position: "relative,",
-                }}
-            >
-                <iframe
-                    src="https://giphy.com/embed/l3nWhI38IWDofyDrW"
-                    width="100%"
-                    height="100%"
-                    style={{ position: "absolute", bottom: -44 }}
-                    className="giphy-embed"
-                    allowFullScreen
-                ></iframe>
-            </div> */}
         </>
     ) : (
         <>
             {!user?.Address && <UnlockMessage />}
-
             <div className="shadow-xl shadow-black  mx-auto px-auto w-[90%] md:min-h-[70vh]  md:px-1 mt-6  py-5  rounded-t-lg bg-purple-700/90 md:rounded-t-3xl flex  flex-col relative md:flex-row">
                 <div className="self-end absolute top-5 right-5">
                     <RWebShare
