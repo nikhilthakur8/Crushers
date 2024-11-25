@@ -21,8 +21,14 @@ export const Search = () => {
         ref.current.continuousStart();
         setCurrentPage(1);
         setFilteredNames([]);
+        console.log(data);
         const DOB = data.DOB.split("-").reverse().join("-");
         data.DOB = DOB;
+        let number = data.phoneNo.replace(/\s+/g, "");
+        number = number.startsWith("0") ? number.slice(1) : number;
+        number = number.startsWith("+91") ? number.slice(3) : number;
+        data.phoneNo = number;
+        console.log(data);
         searchFriend(data)
             .then(async ({ documents, total }) => {
                 scrollToTarget();
@@ -110,14 +116,7 @@ export const Search = () => {
                             id="phoneNo"
                             type="tel"
                             className="w-full font-semibold py-2 px-4 focus:outline-none "
-                            {...register("phoneNo", {
-                                required: false,
-                                pattern: {
-                                    value: /^[0-9]{10}$/,
-                                    message: "Invalid Phone Number",
-                                },
-                                minLength: 10,
-                            })}
+                            {...register("phoneNo")}
                         />
                     </div>
                 </div>
@@ -130,14 +129,7 @@ export const Search = () => {
                         type="date"
                         id="DOB"
                         className="w-full py-2 px-5 rounded-md mt-1 appearance-none font-semibold bg-white focus:outline-none shadow-gray-300 shadow-xl"
-                        {...register("DOB", {
-                            required: false,
-                            pattern: {
-                                value: /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/,
-                                message: "Invalid DOB",
-                            },
-                            minLength: 5,
-                        })}
+                        {...register("DOB")}
                     />
                     <CalendarRange className="absolute top-11 right-5 inline bg-transparent sm:hidden " />
                 </div>

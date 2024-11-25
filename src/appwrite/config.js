@@ -50,6 +50,7 @@ export const searchFriend = async ({ branch, phoneNo, isLE, DOB }) => {
     }
     if (DOB) {
         query.push(Query.equal("DOB", DOB));
+       
     }
     const users = await databases.listDocuments(
         service.appwriteDatabaseId,
