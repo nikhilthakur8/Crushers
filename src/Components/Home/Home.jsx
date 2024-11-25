@@ -1,10 +1,10 @@
 /* eslint-disable react-refresh/only-export-components */
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "../Container/Container";
 import { RandomUserList } from "../../appwrite/config";
 import UserCard from "./UserCard";
 import ClipLoader from "react-spinners/ClipLoader";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Hero } from "../About/Hero";
 import { ArrowUpRight } from "lucide-react";
 export const homeDataLoader = async () => {

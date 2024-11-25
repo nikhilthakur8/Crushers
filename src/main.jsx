@@ -25,6 +25,7 @@ import PrivacyPolicy from "./Components/PrivacyPolicy.jsx";
 import TermsOfService from "./Components/TermsAndService.jsx";
 import UserAnalytics from "./Components/User Analytics/UserAnalytics.jsx";
 import { Search } from "./Components/Search/Search.jsx";
+import { GoogleLogin } from "./GoogleLogin.jsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -49,6 +50,7 @@ const router = createBrowserRouter(
                 <Route path="/about" element={<About />} />
                 <Route path="/termsofservice" element={<TermsOfService />} />
             </Route>
+            <Route path="/login-with-google" element={<GoogleLogin />} />
             <Route path="/wait" element={<Wait />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />

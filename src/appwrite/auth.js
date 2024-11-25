@@ -3,8 +3,7 @@ import service from "../service";
 const client = new Client()
     .setEndpoint("https://cloud.appwrite.io/v1")
     .setProject(service.appwriteProjectId);
-const account = new Account(client);
-
+export const account = new Account(client);
 export const createAccount = async ({ name, email, password }) => {
     const id = email.split("@")[0];
     try {

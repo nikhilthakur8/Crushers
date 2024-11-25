@@ -28,8 +28,9 @@ function App() {
                         setValidUser(true);
                     }
                 })
-                .catch(() => {
-                    navigate("/login");
+                .catch((error) => {
+                    console.log(error);
+                    // navigate("/login");
                 });
         }
     }, []);
