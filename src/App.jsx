@@ -19,7 +19,11 @@ function App() {
         else {
             getUser()
                 .then((res) => {
-                    if (res.emailVerification && res.labels.includes("user")) {
+                    if (
+                        res.emailVerification &&
+                        (res.labels.includes("user") ||
+                            res.labels.includes("admin"))
+                    ) {
                         dispatch(login(res));
                         setValidUser(true);
                     } else {
