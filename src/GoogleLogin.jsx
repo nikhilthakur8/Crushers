@@ -12,18 +12,20 @@ export const GoogleLogin = () => {
         account
             .get("current")
             .then((userData) => {
-                console.log(userData);
-                if (!userData.emailVerification) {
-                    logout();
-                    navigate("/wait");
-                } else {
+                if (
+                    userData.labels.includes("user") &&
+                    userData.emailVerification
+                ) {
                     navigate("/");
                     dispatch(login(userData));
                     localStorage.setItem("uid", encryptData(userData));
+                } else {
+                    logout();
+                    navigate("/wait");
                 }
             })
-            .catch((err) => {
-                console.error(err.message);
+            .catch(() => {
+                navigate("/login");
             });
     }, []);
     return (

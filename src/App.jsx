@@ -19,18 +19,17 @@ function App() {
         else {
             getUser()
                 .then((res) => {
-                    if (!res.emailVerification) {
+                    if (res.emailVerification && res.labels.includes("user")) {
+                        dispatch(login(res));
+                        setValidUser(true);
+                    } else {
                         logout();
                         localStorage.clear();
                         navigate("/wait");
-                    } else if (res.emailVerification) {
-                        dispatch(login(res));
-                        setValidUser(true);
                     }
                 })
-                .catch((error) => {
-                    console.log(error);
-                    // navigate("/login");
+                .catch(() => {
+                    navigate("/login");
                 });
         }
     }, []);
