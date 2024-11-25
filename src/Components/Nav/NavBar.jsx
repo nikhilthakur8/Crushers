@@ -195,13 +195,11 @@ export default function ExampleNavbarFour() {
                                     </nav>
                                 </div>
                                 <div className="ml-3 mt-4 flex items-center space-x-2">
-                                    <Link to="/profile">
                                         <img
                                             className="inline-block border-2 border-white active:border-green-600 h-10 w-10 rounded-full"
                                             src="https://cdn-icons-png.flaticon.com/512/219/219970.png"
                                             alt="Loading..."
                                         />
-                                    </Link>
                                     <span className="flex flex-col">
                                         <span className="text-base font-medium text-white">
                                             {userData?.name}
