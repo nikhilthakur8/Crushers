@@ -24,11 +24,26 @@ export const RandomUserList = async () => {
     return selectedUser;
 };
 export const searchUserByKeyword = async (keyword) => {
-    const user = await databases.listDocuments(
+    let user = await databases.listDocuments(
         service.appwriteDatabaseId,
         service.appwriteCollectionId,
-        [Query.search("fullName", keyword), Query.limit(10)]
+        [Query.startsWith("fullName", keyword), Query.limit(20)]
     );
+    if (user.documents.length == 0) {
+        console.log("hii");
+        user = await databases.listDocuments(
+            service.appwriteDatabaseId,
+            service.appwriteCollectionId,
+            [Query.endsWith("fullName", keyword), Query.limit(20)]
+        );
+    }
+    if (user.documents.length == 0) {
+        user = await databases.listDocuments(
+            service.appwriteDatabaseId,
+            service.appwriteCollectionId,
+            [Query.search("fullName", keyword), Query.limit(20)]
+        );
+    }
     const users = user.documents;
     users.forEach((eachUser) => {
         const fileId = eachUser.image;
@@ -50,7 +65,6 @@ export const searchFriend = async ({ branch, phoneNo, isLE, DOB }) => {
     }
     if (DOB) {
         query.push(Query.equal("DOB", DOB));
-       
     }
     const users = await databases.listDocuments(
         service.appwriteDatabaseId,

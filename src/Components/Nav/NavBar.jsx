@@ -44,7 +44,7 @@ export default function ExampleNavbarFour() {
     };
     const userData = useSelector((state) => state.userData);
     useEffect(() => {
-        if (inputUser.length > 0) {
+        if (inputUser.length >= 3) {
             setLoading(true);
             searchUserByKeyword(inputUser).then((res) => {
                 setItems(res);
@@ -96,7 +96,7 @@ export default function ExampleNavbarFour() {
                             onChange={(e) => {
                                 setTimeout(() => {
                                     setInputUser(e.target.value);
-                                }, 2000);
+                                }, 1000);
                             }}
                         />
                         <div
