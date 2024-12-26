@@ -27,15 +27,8 @@ export const searchUserByKeyword = async (keyword) => {
     let user = await databases.listDocuments(
         service.appwriteDatabaseId,
         service.appwriteCollectionId,
-        [Query.equal("fullName", keyword), Query.limit(20)]
+        [Query.startsWith("fullName", keyword), Query.limit(20)]
     );
-    if (user.documents.length == 0) {
-        user = await databases.listDocuments(
-            service.appwriteDatabaseId,
-            service.appwriteCollectionId,
-            [Query.startsWith("fullName", keyword), Query.limit(20)]
-        );
-    }
     if (user.documents.length == 0) {
         console.log("hii");
         user = await databases.listDocuments(
