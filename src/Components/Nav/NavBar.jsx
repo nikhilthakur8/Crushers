@@ -46,7 +46,7 @@ export default function ExampleNavbarFour() {
     useEffect(() => {
         if (inputUser.length >= 3) {
             setLoading(true);
-            searchUserByKeyword(inputUser).then((res) => {
+            searchUserByKeyword(inputUser.trim()).then((res) => {
                 setItems(res);
                 setLoading(false);
             });
