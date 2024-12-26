@@ -93,6 +93,9 @@ export default function ExampleNavbarFour() {
                             className="flex h-10 md:w-[400px] w-[250px] rounded-md bg-gray-200 px-3 py-2 placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-white/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 text-lg"
                             type="text"
                             placeholder="Search"
+                            onClick={(e) => {
+                                e.currentTarget.select();
+                            }}
                             onChange={(e) => {
                                 setTimeout(() => {
                                     setInputUser(e.target.value);
@@ -195,11 +198,11 @@ export default function ExampleNavbarFour() {
                                     </nav>
                                 </div>
                                 <div className="ml-3 mt-4 flex items-center space-x-2">
-                                        <img
-                                            className="inline-block border-2 border-white active:border-green-600 h-10 w-10 rounded-full"
-                                            src="https://cdn-icons-png.flaticon.com/512/219/219970.png"
-                                            alt="Loading..."
-                                        />
+                                    <img
+                                        className="inline-block border-2 border-white active:border-green-600 h-10 w-10 rounded-full"
+                                        src="https://cdn-icons-png.flaticon.com/512/219/219970.png"
+                                        alt="Loading..."
+                                    />
                                     <span className="flex flex-col">
                                         <span className="text-base font-medium text-white">
                                             {userData?.name}
