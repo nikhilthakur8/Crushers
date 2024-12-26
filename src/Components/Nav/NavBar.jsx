@@ -51,9 +51,7 @@ export default function ExampleNavbarFour() {
                 setLoading(false);
             });
         } else {
-            setTimeout(() => {
                 setItems([]);
-            }, 1000);
         }
     }, [inputUser]);
     return (
@@ -97,7 +95,7 @@ export default function ExampleNavbarFour() {
                                 e.currentTarget.select();
                             }}
                             onChange={(e) => {
-                                setTimeout(() => {
+                                setTimeout(() => {                                    
                                     setInputUser(e.target.value);
                                 }, 1000);
                             }}
