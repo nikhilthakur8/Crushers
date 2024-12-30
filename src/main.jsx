@@ -26,6 +26,7 @@ import TermsOfService from "./Components/TermsAndService.jsx";
 import UserAnalytics from "./Components/User Analytics/UserAnalytics.jsx";
 import { Search } from "./Components/Search/Search.jsx";
 import { GoogleLogin } from "./GoogleLogin.jsx";
+import { FaceSearch } from "./Components/FaceSearch/FaceSearch.jsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -44,6 +45,7 @@ const router = createBrowserRouter(
                         element={<UserAnalytics />}
                     />
                 </Route>
+                <Route path="/face-search" element={<FaceSearch/>}/>
             </Route>
             <Route path="/" element={<Auth />}>
                 <Route path="/privacypolicy" element={<PrivacyPolicy />} />
