@@ -1,11 +1,34 @@
 import React, { useState } from "react";
 import Container from "../Container/Container";
-
+import axios from "axios";
 export const FaceSearch = () => {
     const [image, faceImage] = useState(
         "https://cdna.artstation.com/p/assets/images/images/040/951/926/original/maddie_creates-jj-ver2.gif?1630351796"
     );
 
+    function onSubmit() {
+        if (!image) console.log("Please Upload Photo");
+        const formData = new FormData();
+        formData.append("image", image);
+        console.log("hurray");
+        axios
+            .post("https://www.crushers-face-search-backend.vercel.app/api/match", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            })
+            .then((res) => {
+                console.log(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+            .finally(() => {
+                faceImage(
+                    "https://cdna.artstation.com/p/assets/images/images/040/951/926/original/maddie_creates-jj-ver2.gif?1630351796"
+                );
+            });
+    }
     function imagePreview(e) {
         faceImage(URL.createObjectURL(e.target.files[0]));
     }
@@ -43,7 +66,8 @@ export const FaceSearch = () => {
                 </div>
             </div>
             <button
-                type="button"
+                type="submit"
+                onClick={onSubmit}
                 className="text-center block w-60 mx-auto  bg-blue-500 cursor-pointer hover:ring-offset-0 hover:ring-2 duration-200 hover:ring-blue-300 px-6 py-2 border-white text-white rounded-md"
             >
                 Search Now
