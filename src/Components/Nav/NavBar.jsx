@@ -48,7 +48,7 @@ export default function ExampleNavbarFour() {
             setLoading(true);
             searchUserByKeyword(inputUser.trim()).then((res) => {
                 setItems(res);
-                setItems(res);n
+                setItems(res);
                 setLoading(false);
             });
         } else {
