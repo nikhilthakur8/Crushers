@@ -39,12 +39,12 @@ function App() {
     }, []);
     return (
         validUser && (
-            <>
-                <Notification />
+            <div>
+                {/* <Notification /> */}
                 <NavBar />
                 <Outlet />
                 <Footer />
-            </>
+            </div>
         )
     );
 }

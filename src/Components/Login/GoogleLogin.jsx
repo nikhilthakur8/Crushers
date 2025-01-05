@@ -30,7 +30,7 @@ export const GoogleLogin = () => {
                         fill="#ea4335"
                     />
                 </svg>
-                <p className="text-white">Google</p>
+                <p className="text-gray-300">Google</p>
             </a>
         </div>
     );

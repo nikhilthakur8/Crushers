@@ -46,7 +46,7 @@ function Signup() {
             });
     }
     return (
-        <Container style="#2f2f4c">
+        <Container className="bg-slate-900 ">
             <div className="w-[85%] lg:w-[30%] md:w-[40%] py-20 min-h-dvh mx-auto flex justify-center items-center flex-col">
                 {error && error.length > 0 && <AlertBanner message={error} />}
                 <div>
@@ -56,11 +56,11 @@ function Signup() {
                         alt=""
                     />
                 </div>
-                <h1 className="md:text-3xl text-2xl  mb-5 text-white ">
+                <h1 className="md:text-3xl text-2xl  mb-5 text-gray-300 ">
                     Sign up to Crushers App
                 </h1>
                 <GoogleLogin />
-                <div className="flex text-white w-full space-x-3 mt-3 items-center">
+                <div className="flex text-gray-300 w-full space-x-3 mt-3 items-center">
                     <div className="h-0.5 bg-gray-500 w-full "></div>
                     <p>OR</p>
                     <div className="h-0.5 bg-gray-500  w-full"></div>
@@ -105,7 +105,7 @@ function Signup() {
                             },
                         })}
                     />
-                    <p className="text-white text-xs -mt-3 mb-3">
+                    <p className="text-gray-300 text-xs -mt-3 mb-3">
                         By proceeding, you are indicating that you have read and
                         agree to our{" "}
                         <Link to="/termsofservice" className="underline">
@@ -125,9 +125,9 @@ function Signup() {
                     />
                 </form>
                 <div className="mt-5">
-                    <p className="text-white/70 text-center">
+                    <p className="text-gray-300/70 text-center">
                         Already have an account?
-                        <Link to="/login" className="text-white font-serif">
+                        <Link to="/login" className="text-gray-300 font-serif">
                             <button className="border rounded-md mx-2 px-1.5 py-0.5">
                                 Login
                             </button>

@@ -1,18 +1,13 @@
 /* eslint-disable react/prop-types */
 
-function Container({
-	color = "",
-	children,
-	style
-}) {
-	return (
-		<div
-		className={`w-full overflow-auto ${color} no-scrollbar`}
-		style ={{backgroundColor:style}}
-		>
-			{children}
-		</div>
-	)
+function Container({ color = "", children, className }) {
+    return (
+        <div
+            className={`w-full md:px-10 px-5 overflow-auto ${color} no-scrollbar ${className}`}
+        >
+            {children}
+        </div>
+    );
 }
 
-export default Container
+export default Container;

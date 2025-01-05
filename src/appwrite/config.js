@@ -9,19 +9,20 @@ const databases = new Databases(client);
 const storage = new Storage(client);
 
 export const RandomUserList = async () => {
-    const { documents } = await databases.listDocuments(
+    const res = await databases.listDocuments(
         service.appwriteDatabaseId,
         service.appwriteCollectionId,
         [Query.limit(1045)]
     );
+    const documents = res.documents;
     const selectedUser = [];
-    for (let index = 0; index < 12; index++) {
+    for (let index = 0; index < 8; index++) {
         selectedUser.push(documents[Math.floor(1 + Math.random() * 1045)]);
     }
     selectedUser.forEach(
         (eachUser) => (eachUser["imgLink"] = getPhotoPreview(eachUser.image))
     );
-    return selectedUser;
+    return { selectedUser, total: res.total };
 };
 export const searchUserByKeyword = async (keyword) => {
     let user = await databases.listDocuments(

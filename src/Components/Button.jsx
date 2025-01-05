@@ -4,19 +4,18 @@
 import { ClipLoader } from "react-spinners";
 
 export function TrailingIconButtons({
-  type = "button",
-  text,
-  loading = false,
-  ...props
+    type = "button",
+    text,
+    loading = false,
+    ...props
 }) {
-  return (
-    <button
-      type={type}
-      className="w-full  flex items-center justify-center bg-blue-500 px-10 py-2 my-2 text-base md:text-lg font-semibold text-white hover:bg-blue-500/70"
-      {...props}
-    >
-      {loading ? <ClipLoader size={30}/> : text}
-      {/* <ArrowRight className="ml-2 h-4 w-4" /> */}
-    </button>
-  );
+    return (
+        <button
+            type={type}
+            className="w-full shadow-[0_4px_14px_0_rgb(0,118,255,39%)] hover:shadow-[0_6px_20px_rgba(0,118,255,23%)] hover:bg-[rgba(0,118,255,0.9)] px-8 py-2 bg-[#0070f3] rounded-md text-white font-light transition duration-200 ease-linear"
+            {...props}
+        >
+            {loading ? <ClipLoader size={30} /> : text}
+        </button>
+    );
 }

@@ -5,6 +5,7 @@ import { searchUserByKeyword } from "../../appwrite/config";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Button } from "../ui/moving-border";
 
 const menuItems = [
     {
@@ -48,11 +49,11 @@ export default function ExampleNavbarFour() {
             setLoading(true);
             searchUserByKeyword(inputUser.trim()).then((res) => {
                 setItems(res);
-                setItems(res);n
+                setItems(res);
                 setLoading(false);
             });
         } else {
-                setItems([]);
+            setItems([]);
         }
     }, [inputUser]);
     return (
@@ -88,28 +89,31 @@ export default function ExampleNavbarFour() {
                 </div>
                 {userData ? (
                     <div className="flex relative grow md:justify-end justify-center">
-                        <input
-                            className="flex h-10 md:w-[400px] w-[250px] rounded-md bg-gray-200 px-3 py-2 placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-white/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 text-lg"
-                            type="text"
-                            placeholder="Search"
-                            onClick={(e) => {
-                                e.currentTarget.select();
-                            }}
-                            onChange={(e) => {
-                                setTimeout(() => {                                    
-                                    setInputUser(e.target.value);
-                                }, 1000);
-                            }}
-                        />
+                        <Button>
+                            <input
+                                className="bg-transparent px-5 w-full h-full placeholder:text-gray-600  focus:outline-none"
+                                spellCheck={false}
+                                type="text"
+                                placeholder="Search"
+                                onClick={(e) => {
+                                    e.currentTarget.select();
+                                }}
+                                onChange={(e) => {
+                                    setTimeout(() => {
+                                        setInputUser(e.target.value);
+                                    }, 1000);
+                                }}
+                            />
+                        </Button>
                         <div
                             onClick={() => {
                                 setItems([]);
                             }}
-                            className="absolute z-10 shadow-lg shadow-black top-12 no-scrollbar max-h-[40vh] overflow-auto cursor-pointer  rounded-xl "
+                            className="absolute z-10 shadow-sm border-[0.1px] border-slate-700 top-12 no-scrollbar max-h-[40vh] overflow-auto cursor-pointer bg-slate-900  rounded-xl "
                         >
                             {loading ? (
-                                <div className="overflow-hidden flex justify-center md:w-[400px] w-[250px] h-12 items-center bg-gray-300 font-bolder ">
-                                    <ClipLoader />
+                                <div className="overflow-hidden flex justify-center md:w-[390px] w-[240px] h-12 items-center bg-slate-900 font-bolde ">
+                                    <ClipLoader color="white" />
                                 </div>
                             ) : (
                                 items &&

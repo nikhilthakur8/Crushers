@@ -6,19 +6,10 @@ import { ClipLoader } from "react-spinners";
 function UserCard({ user }) {
     const [loading, setLoading] = useState(true);
     return (
-        <Link to={`/user/${user.$id}`}>
-            <div
-                style={{
-                    backgroundImage:
-                        'url("https://png.pngtree.com/thumb_back/fh260/background/20210610/pngtree-simple-sky-blue-texture-texture-background-image_727240.jpg")',
-                    width: "100%",
-                    height: "auto",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                }}
-                className="relative flex flex-col text-gray-700 shadow-md bg-gray-50  rounded-xl "
-            >
-                <div className="relative mx-4 mt-4 flex justify-center items-center overflow-hidden text-gray-700 bg-gray-100 shadow-md shadow-gray-300 bg-clip-border rounded-xl md:h-60 h-32">
+        <Link to={`/user/${user.$id}`} className="relative">
+            <div className="absolute hidden md:block inset-0 h-full  bg-gradient-to-r from-blue-500 to-teal-500 transform scale-[0.80] rounded-full blur-2xl md:blur-3xl " />
+            <div className="relative bg-gray-900 bg-grid-white/[0.02] text-white shadow-md border border-slate-700 rounded-xl overflow-hidden">
+                <div className="mx-4 mt-4 flex justify-center items-center text-gray-700  rounded-xl md:h-60 h-32">
                     <img
                         className={`md:w-40 w-24 rounded-md overflow-hidden ${
                             loading && "hidden"
@@ -32,17 +23,17 @@ function UserCard({ user }) {
                             !loading && "hidden"
                         }`}
                     >
-                        <ClipLoader size={40} />
+                        <ClipLoader color="white" size={40} />
                     </div>
                 </div>
-                <div className="md:p-6 p-2 text-center w-full">
-                    <h4 className="block text-md mb-1 md:mb-2 font-sans md:text-2xl antialiased font-semibold leading-snug tracking-normal text-gray-900">
+                <div className="md:p-6 p-3 border-t border-slate-700 text-center text-neutral-300 w-full">
+                    <h4 className="block text-md mb-1 md:mb-2 text-neutral-200 font-sans md:text-2xl font-bold">
                         {user.fullName}
                     </h4>
-                    <p className="block font-sans text-sm md:text-base antialiased font-medium leading-relaxed  bg-clip-text bg-gradient-to-tr from-blue-gray-600 to-blue-gray-400 text-black ">
+                    <p className="font-sans text-sm md:text-base antialiased font-medium ">
                         {user.branch}
                     </p>
-                    <p className="font-sans text-base antialiased font-medium leading-relaxed  bg-clip-text bg-gradient-to-tr from-blue-gray-600 to-blue-gray-400 text-black md:block hidden">
+                    <p className="font-sans text-base font-medium md:block hidden">
                         DOB: {user.DOB}
                     </p>
                 </div>

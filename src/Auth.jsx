@@ -12,11 +12,11 @@ function Auth() {
     dispatch(login(userData));
   }
   return (
-    <>
+    <div>
       <NavBar />
       <Outlet />
       <Footer />
-    </>
+    </div>
   );
 }
 

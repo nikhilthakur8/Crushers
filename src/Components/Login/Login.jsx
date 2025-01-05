@@ -41,7 +41,7 @@ function Login() {
     }
 
     return (
-        <Container style="#2f2f4c">
+        <Container className={"bg-slate-900"}>
             <div className="w-[85%]  lg:w-[30%] md:w-[40%] py-10 min-h-dvh mx-auto flex justify-center items-center flex-col">
                 {error && error.length > 0 && <AlertBanner message={error} />}
                 <div>
@@ -51,11 +51,11 @@ function Login() {
                         alt=""
                     />
                 </div>
-                <h1 className="md:text-3xl text-2xl mb-5 text-white ">
+                <h1 className="md:text-3xl text-2xl mb-5 text-gray-300 ">
                     Login to Crushers App
                 </h1>
                 <GoogleLogin />
-                <div className="flex text-white w-full space-x-3 mt-3 items-center">
+                <div className="flex text-gray-300 w-full space-x-3 mt-3 items-center">
                     <div className="h-0.5 bg-gray-500 w-full "></div>
                     <p>OR</p>
                     <div className="h-0.5 bg-gray-500  w-full"></div>
@@ -98,9 +98,9 @@ function Login() {
                 </form>
 
                 <div className="mt-5">
-                    <p className="text-white/70 ">
+                    <p className="text-gray-300/70 ">
                         Need an account?
-                        <Link to="/signup" className="text-white font-serif">
+                        <Link to="/signup" className="text-gray-300 font-serif">
                             <button className="border rounded-md mx-2 px-1.5 py-0.5">
                                 Sign up
                             </button>
