@@ -74,9 +74,9 @@ function Profile() {
                         </form>
                     </div>
                     <Link to="/logout">
-                        <button className=" max-w-sm mx-auto  flex items-center justify-center bg-black px-10 py-2 mt-5 text-base md:text-lg font-semibold group text-white  hover:text-xl hover:bg-black/80 rounded-lg ">
+                        <button className=" max-w-sm mx-auto  flex items-center justify-center bg-black px-10 py-2 mt-5 text-base md:text-lg font-semibold group text-white  hover:scale-110 transform duration-300 hover:bg-black/80 rounded-lg ">
                             Logout
-                            <ArrowRight className="group-hover:translate-x-1 group-hover:size-5 ml-2 h-4 w-4" />
+                            <ArrowRight className="ml-2 h-4 w-4" />
                         </button>
                     </Link>
                     <Meteors number={20} />
