@@ -42,7 +42,7 @@ function User() {
     }, [userId]);
     return pageLoading ? (
         <>
-            <div className="min-h-[80vh] flex justify-center">
+            <div className="min-h-[80vh] flex bg-slate-700 justify-center">
                 <img
                     src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTsNzXnQ3DZVtU8RteFSaX9-UAvwErM_fk_DPPRjWDufrHpQ7wp"
                     alt=""
@@ -52,7 +52,7 @@ function User() {
         </>
     ) : (
         <div className="bg-slate-900 ">
-            {!user?.Address && <UnlockMessage />}
+            {/* {!user?.Address && <UnlockMessage />} */}
             <div className="mx-4 sm:max-w-sm xl:max-w-2xl min-h-[70vh] sm:mx-auto px-auto py-12 bg-grid-white/[0.02]">
                 <BackgroundGradient className="rounded-[22px]  bg-white dark:bg-zinc-900">
                     <div className="md:px-1 flex bg-slate-900  flex-col  relative rounded-t-[25px]">
@@ -67,9 +67,7 @@ function User() {
                                 <Share2 className="w-10 cursor-pointer h-7 md:w-12 md:h-10 rounded-md shadow-lg bg-cyan-900 text-gray-300 p-1 active:text-white active:bg-slate-700 font-semibold" />
                             </RWebShare>
                         </div>
-                        <div
-                            className=" lg:w-44 md:w-44 md:h-auto lg:h-auto w-28 h-28  mx-auto my-5  md:rounded-xl flex justify-center items-center"
-                        >
+                        <div className=" lg:w-44 md:w-44 md:h-auto lg:h-auto w-28 h-28  mx-auto my-5  md:rounded-xl flex justify-center items-center">
                             <img
                                 src={user?.imgLink}
                                 className={`rounded-md  h-full w-full  shadow-lg ${

@@ -15,7 +15,7 @@ function Profile() {
     const userData = isAuthenticated();
     document.title = `Profile - Crushers`;
     return (
-        <Container className={"bg-black/[0.96]"}>
+        <Container className={"bg-black/[0.96] sm:min-h-[80vh]"}>
             <div className="relative max-w-2xl  mx-4 lg:max-w-sm xl:max-w-2xl sm:mx-auto">
                 <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-blue-500 to-teal-500 transform scale-[0.80] bg-red-500 rounded-full blur-3xl" />
                 <div className="relative overflow-hidden my-14 py-5 border-[0.5px] font-sans border-slate-400 text-slate-300 rounded-lg bg-gray-900 ">
