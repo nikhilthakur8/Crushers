@@ -3,6 +3,10 @@
         {
             "source": "/college/:path(.*)",
             "destination": "https://bharatividyapeethfees.com/college/:path"
+        },
+        {
+            "source": "/(.*)",
+            "destination": "/"
         }
     ]
 }
