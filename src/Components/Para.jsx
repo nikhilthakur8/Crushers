@@ -1,25 +1,15 @@
 /* eslint-disable react/prop-types */
 
-import { ExternalLink, Lock } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
 function Para({ text, output }) {
     return (
-        <div className="w-full px-6 md:w-[95%]  flex justify-between text-base md:text-xl lg:text-2xl my-2">
-            <div className="flex flex-row w-full">
+        <div className=" flex text-base justify-between md:text-xl lg:text-2xl my-2">
+            <div className="flex flex-row">
                 <p className=" text-slate-500 inline font-medium  mr-2 ">
                     {text}
                 </p>
-                {output ? (
-                    <p className=" text-gray-100 inline ">{output}</p>
-                ) : (
-                    <div className="bg-gray-200/50 rounded flex-1 text-center mr-5 ">
-                        <Lock
-                            className="inline my-0.5"
-                            strokeWidth={1.5}
-                            height={20}
-                        />
-                    </div>
-                )}
+                <p className=" text-gray-100 inline ">{output}</p>
             </div>
             {text === "Address:" && output && (
                 <a

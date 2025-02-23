@@ -121,3 +121,12 @@ export const updateTheSeenBy = async (
         { seenBy: (updatedSeenBy.length > 0 && updatedSeenBy) || newSeenBy }
     );
 };
+
+export const updateUserEmail = async (email, docId) => {
+    await databases.updateDocument(
+        service.appwriteDatabaseId,
+        service.appwriteCollectionId,
+        docId,
+        { email }
+    );
+};

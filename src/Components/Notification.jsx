@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 function Notification() {
     return (
-        <Link to={"/face-search"}>
-            <div className=" py-1 bg-blue-950 text-white cursor-pointer   font-semibold  text-center">
-                Introducing Face Search Option 🔎🔎
+        <Link to={"/search-search"}>
+            <div className="py-1 bg-gradient-to-l from-indigo-700 via-purple-700 to-pink-700  text-white cursor-pointer  font-semibold  text-center">
+                Advanced Search Option 🔎🔎
             </div>
         </Link>
     );

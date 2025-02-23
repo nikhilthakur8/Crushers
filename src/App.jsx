@@ -40,7 +40,7 @@ function App() {
     return (
         validUser && (
             <div>
-                {/* <Notification /> */}
+                <Notification />
                 <NavBar />
                 <Outlet />
                 <Footer />

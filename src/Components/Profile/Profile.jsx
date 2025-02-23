@@ -36,7 +36,7 @@ function Profile() {
                                 />
                             </label>
                             <input
-                                accept="image/*"
+                                accept=".jpg,.jpeg,.png"
                                 type="file"
                                 name="profileImg"
                                 id="image-input"

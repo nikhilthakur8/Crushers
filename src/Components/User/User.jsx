@@ -2,20 +2,23 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef, useState } from "react";
 import Para from "../Para";
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getUserById, updateTheSeenBy } from "../../appwrite/config";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useSelector } from "react-redux";
 import { RWebShare } from "react-web-share";
-import { Share2, Unlock } from "lucide-react";
+import { Share2 } from "lucide-react";
 import { TrailingIconButtons } from "../Button";
-import { UnlockMessage } from "./UnlockMessage";
 import { BackgroundGradient } from "../ui/background-gradient";
+import { fetchEmail } from "../../Customhook/fetchEmail";
+import { Bounce, toast, ToastContainer } from "react-toastify";
 function User() {
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState();
     const { userId } = useParams();
     const [pageLoading, setPageLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [emailLoading, setEmailLoading] = useState(false);
     const requestingUser = useSelector((state) => state.userData);
     useEffect(() => {
         window.scrollTo(0, -200);
@@ -40,6 +43,35 @@ function User() {
             })
             .finally(() => setPageLoading(false));
     }, [userId]);
+
+    const handleEmailFetch = () => {
+        setEmailLoading(true);
+        return new Promise((resolve, reject) => {
+            fetchEmail(user?.mobileNumber, user?.$id)
+                .then((email) => {
+                    if (email) {
+                        setUser((user) => {
+                            return { ...user, email };
+                        });
+                        resolve(email);
+                    }
+                })
+                .catch((err) => {
+                    setError(err.message);
+                    reject(err);
+                })
+                .finally(() => {
+                    setEmailLoading(false);
+                });
+        });
+    };
+    const handleToast = () => {
+        toast.promise(handleEmailFetch(), {
+            pending: "Finding (might take a few minutes)",
+            success: `Email ID Found`,
+            error: error || "Something went wrong",
+        });
+    };
     return pageLoading ? (
         <>
             <div className="min-h-[80vh] flex bg-slate-700 justify-center">
@@ -53,7 +85,21 @@ function User() {
     ) : (
         <div className="bg-slate-900 ">
             {/* {!user?.Address && <UnlockMessage />} */}
-            <div className="mx-4 sm:max-w-sm xl:max-w-2xl min-h-[70vh] sm:mx-auto px-auto py-12 bg-grid-white/[0.02]">
+            <div className="mx-4 sm:max-w-xl xl:max-w-2xl min-h-[70vh] sm:mx-auto px-auto py-12 bg-grid-white/[0.02]">
+                <ToastContainer
+                    className={"md:mt-28 mt-24 px-2"}
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick={false}
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="dark"
+                    transition={Bounce}
+                />
                 <BackgroundGradient className="rounded-[22px]  bg-white dark:bg-zinc-900">
                     <div className="md:px-1 flex bg-slate-900  flex-col  relative rounded-t-[25px]">
                         <div className="self-end absolute top-5 right-5">
@@ -80,7 +126,7 @@ function User() {
                             </div>
                         </div>
 
-                        <div className="w-full mx-auto sm:my-6">
+                        <div className="w-full mx-auto sm:my-6 my-3 px-6">
                             <Para text={"Name:"} output={user?.fullName} />
                             <Para text={"Branch:"} output={user?.branch} />
                             <Para text={"Roll No. "} output={user?.rollNo} />
@@ -96,6 +142,21 @@ function User() {
                             <Para text={"Address:"} output={user?.Address} />
                             <Para text={"Date:"} output={user?.date} />
                             <Para text={"Time :"} output={user?.time} />
+                            <div className="flex">
+                                <Para
+                                    text={"Email Id :"}
+                                    output={user?.email}
+                                />
+                                {user?.email == null && (
+                                    <button className="md:w-56 mx-2 text-sm md:text-base">
+                                        <TrailingIconButtons
+                                            loading={emailLoading}
+                                            onClick={handleToast}
+                                            text={"Get Email Id"}
+                                        />
+                                    </button>
+                                )}
+                            </div>
                         </div>
                     </div>
                     <div className=" bg-slate-900 border-t-[0.1px] border-slate-500 p-2 text-base md:text-xl lg:text-2xl  text-white text-center rounded-b-[25px]">
@@ -105,7 +166,7 @@ function User() {
                 {requestingUser.labels.includes("admin") && user && (
                     <Link
                         to={`/admin/user/analytics/${user?.$id}`}
-                        className="block w-56 mx-auto mt-10 font-semibold rounded-md"
+                        className="block w-56 mt-10 mx-auto font-semibold rounded-md"
                     >
                         <TrailingIconButtons text="View Analytics"></TrailingIconButtons>
                     </Link>
