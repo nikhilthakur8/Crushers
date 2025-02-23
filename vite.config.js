@@ -11,6 +11,7 @@ export default defineConfig({
             "/college": {
                 target: "https://bharatividyapeethfees.com/",
                 changeOrigin: true,
+                secure: false,
             },
         },
     },
