@@ -54,7 +54,7 @@ export const searchUserByKeyword = async (keyword) => {
     return users;
 };
 export const getPhotoPreview = (fileId) => {
-    return storage.getFilePreview(service.appwriteBucketId, fileId);
+    return storage.getFileView(service.appwriteBucketId, fileId);
 };
 export const searchFriend = async ({ branch, phoneNo, isLE, DOB }) => {
     const query = [Query.limit(1057)];
