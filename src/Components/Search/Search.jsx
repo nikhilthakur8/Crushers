@@ -188,6 +188,7 @@ export const Search = () => {
                                             className="bg-blue-100 hover:scale-105 transition-all duration-300   py-3 pl-3 rounded-md font-semibold my-4"
                                         >
                                             <Link
+                                                target="_blank"
                                                 to={`/user/${eachUser.$id}`}
                                                 className="flex items-center"
                                             >
