@@ -5,7 +5,7 @@ export const googleUserLogin = async () => {
         account.createOAuth2Session(
             "google",
             "https://crushers.vercel.app/login-with-google",
-            // "http://192.168.1.37/login-with-google",
+            // "http://192.168.1.36/login-with-google",
             "https://crushers.vercel.app/login"
         );
     } catch (error) {
