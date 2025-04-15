@@ -20,7 +20,7 @@ export const GoogleLogin = () => {
             })
             .catch((msg) => {
                 console.error("Failed to fetch user data", msg);
-                navigate("/login");
+                // navigate("/login");
             });
     }, [dispatch, navigate]);
     return (
