@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { login } from "./features/User";
 import { encryptData } from "./Jwt/auth";
 import { account } from "./appwrite/auth";
@@ -8,21 +8,25 @@ import { account } from "./appwrite/auth";
 export const GoogleLogin = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    
+    const [searchParams] = useSearchParams();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
-        account
-            .get()
-            .then((userData) => {
-                console.log(userData);
+        const secret = searchParams.get("secret");
+        const userId = searchParams.get("userId");
+        if (!userId || !secret) navigate("/login");
+        const loginWithGoogle = async () => {
+            try {
+                await account.createSession(userId, secret);
+                const userData = await account.get();
                 dispatch(login(userData));
                 localStorage.setItem("uid", encryptData(userData));
                 navigate("/");
-            })
-            .catch((msg) => {
-                console.error("Failed to fetch user data", msg);
+            } catch (error) {
                 navigate("/login");
-            });
-    }, [dispatch, navigate]);
+            }
+        };
+        loginWithGoogle();
+    }, []);
     return (
         <div className="text-xl text-center my-10  text-blue-800">
             {/* <AlertBanner message={axiosError} /> */}
