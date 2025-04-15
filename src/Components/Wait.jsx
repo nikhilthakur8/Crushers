@@ -35,8 +35,8 @@ function Wait() {
             <h1>Email: {userData?.email}</h1>
             <h1>
               Account Status:{" "}
-              {userData?.prefs.status ? (
-                <p className="text-red-700 inline">{userData?.prefs.status}</p>
+              {userData?.prefs?.status ? (
+                <p className="text-red-700 inline">{userData?.prefs?.status}</p>
               ) : (
                 <p className="text-green-700 font-bold text-lg inline">
                   In process(Wait...)
