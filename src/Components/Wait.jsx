@@ -45,8 +45,8 @@ function Wait() {
             </h1>
             <h1>
               Message:{" "}
-              {userData?.prefs.message ? (
-                <p className="text-red-700 inline">{userData?.prefs.message}</p>
+              {userData?.prefs?.message ? (
+                <p className="text-red-700 inline">{userData?.prefs?.message}</p>
               ) : (
                 <p className="font-bold inline">No Message</p>
               )}
