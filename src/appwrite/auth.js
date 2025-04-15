@@ -18,7 +18,7 @@ export const createAccount = async ({ name, email, password }) => {
 
 export const userLogin = async ({ email, password }) => {
     try {
-        const userAccount = account.createEmailSession(email, password);
+        const userAccount = account.createEmailPasswordSession(email, password);
         return userAccount;
     } catch (error) {
         return error;
