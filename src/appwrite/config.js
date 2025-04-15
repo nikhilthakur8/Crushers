@@ -113,13 +113,14 @@ export const updateTheSeenBy = async (
     const newSeenBy = isSeened
         ? null
         : [JSON.stringify(reqUserDetails), ...seenBy];
-
+    console.log(newSeenBy);
     await databases.updateDocument(
         service.appwriteDatabaseId,
         service.appwriteCollectionId,
         docId,
-        { seenBy: (updatedSeenBy.length > 0 && updatedSeenBy) || newSeenBy }
+        { seenBy: (isSeened && updatedSeenBy) || newSeenBy }
     );
+
 };
 
 export const updateUserEmail = async (email, docId) => {
