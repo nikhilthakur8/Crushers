@@ -2,6 +2,21 @@
 import { Client, Databases, Query, Storage } from "appwrite";
 import service from "../service";
 
+const userDetails = [
+    "fullName",
+    "email",
+    "mobileNumber",
+    "rollNo",
+    "branch",
+    "bloodGroup",
+    "date",
+    "time",
+    "image",
+    "Address",
+    "DOB",
+    "seenBy",
+    "totalViews",
+];
 const client = new Client()
     .setEndpoint(service.appwriteUrl)
     .setProject(service.appwriteProjectId);
@@ -24,6 +39,7 @@ export const RandomUserList = async () => {
     );
     return { selectedUser, total: res.total };
 };
+
 export const searchUserByKeyword = async (keyword) => {
     let user = await databases.listDocuments(
         service.appwriteDatabaseId,
@@ -67,6 +83,7 @@ export const searchFriend = async ({ branch, phoneNo, isLE, DOB }) => {
     if (DOB) {
         query.push(Query.equal("DOB", DOB));
     }
+    query.push(Query.select(userDetails));
     const users = await databases.listDocuments(
         service.appwriteDatabaseId,
         service.appwriteCollectionId,
@@ -79,7 +96,8 @@ export const getUserById = async (userId) => {
     const user = await databases.getDocument(
         service.appwriteDatabaseId,
         service.appwriteCollectionId,
-        userId
+        userId,
+        [Query.select(userDetails)]
     );
 
     user["imgLink"] = getPhotoPreview(user.image);
@@ -89,6 +107,7 @@ export const getUserById = async (userId) => {
 export const updateTheSeenBy = async (
     { $id, email, fullName },
     docId,
+    totalViews,
     { seenBy }
 ) => {
     const reqUserDetails = {
@@ -113,14 +132,15 @@ export const updateTheSeenBy = async (
     const newSeenBy = isSeened
         ? null
         : [JSON.stringify(reqUserDetails), ...seenBy];
-    console.log(newSeenBy);
     await databases.updateDocument(
         service.appwriteDatabaseId,
         service.appwriteCollectionId,
         docId,
-        { seenBy: (isSeened && updatedSeenBy) || newSeenBy }
+        {
+            seenBy: (isSeened && updatedSeenBy) || newSeenBy,
+            totalViews: totalViews + 1,
+        }
     );
-
 };
 
 export const updateUserEmail = async (email, docId) => {

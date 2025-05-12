@@ -5,4 +5,6 @@ export default {
   appwriteCollectionId: import.meta.env.VITE_APPWRITE_COLLECTION_ID,
   appwriteBucketId: import.meta.env.VITE_APPWRITE_BUCKET_ID,
   secretKey: import.meta.env.VITE_PRIVATE_KEY,
+  appwriteCollectionId2: import.meta.env.VITE_APPWRITE_COLLECTION_ID_ADDITIONAL,
+  appwriteBucketId2: import.meta.env.VITE_APPWRITE_BUCKET_ID_ADDITIONAL,
 };

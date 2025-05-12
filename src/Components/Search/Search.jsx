@@ -21,14 +21,12 @@ export const Search = () => {
         ref.current.continuousStart();
         setCurrentPage(1);
         setFilteredNames([]);
-        console.log(data);
         const DOB = data.DOB.split("-").reverse().join("-");
         data.DOB = DOB;
         let number = data.phoneNo.replace(/\s+/g, "");
         number = number.startsWith("0") ? number.slice(1) : number;
         number = number.startsWith("+91") ? number.slice(3) : number;
         data.phoneNo = number;
-        console.log(data);
         searchFriend(data)
             .then(async ({ documents, total }) => {
                 scrollToTarget();
