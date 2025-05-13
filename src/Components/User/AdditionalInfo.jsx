@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { BackgroundGradient } from "../ui/background-gradient";
 import Para from "../Para";
+import { Link } from "lucide-react";
 
 export const AdditionalInfo = ({ additionalUserData }) => {
     return (
@@ -42,6 +43,7 @@ export const AdditionalInfo = ({ additionalUserData }) => {
                     text={"Specialization :"}
                     output={additionalUserData?.specialization}
                 />
+                <Para text={"CGPA :"} output={additionalUserData?.cgpa} />
                 <Para
                     text={"Github Username :"}
                     output={additionalUserData?.githubUsername || "N/A"}
@@ -58,19 +60,23 @@ export const AdditionalInfo = ({ additionalUserData }) => {
                         additionalUserData?.leetcodeUsername ? "Link" : "N/A"
                     }
                 />
-                <Para text={"CGPA :"} output={additionalUserData?.cgpa} />
                 <Para
                     text={"LinkedIn URL :"}
                     url={additionalUserData?.linkedInURL}
                     output={additionalUserData?.linkedInURL ? "Link" : "N/A"}
                 />
-                <Para text={"Gaia ID :"} output={additionalUserData?.gaiaId} />
+                {/* <Para text={"Gaia ID :"} output={additionalUserData?.gaiaId} /> */}
                 <Para
                     text={"Google Profile Pic :"}
                     url={additionalUserData?.googleProfilePic}
                     output={
                         additionalUserData?.googleProfilePic ? "Link" : "N/A"
                     }
+                />
+                <Para
+                    text={"Google Maps Reviews :"}
+                    url={`https://www.google.com/maps/contrib/${additionalUserData?.gaiaId}/reviews`}
+                    output={"Link"}
                 />
             </div>
         </div>
