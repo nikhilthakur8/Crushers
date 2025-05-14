@@ -15,6 +15,20 @@ import { Bounce, toast, ToastContainer } from "react-toastify";
 import { AdditionalInfo } from "./AdditionalInfo";
 import { getUserByName } from "../../appwrite/config.addtional.js";
 import { IconSquareToggleHorizontal } from "@tabler/icons-react";
+const userDetails = [
+    "fullName",
+    "email",
+    "mobileNumber",
+    "rollNo",
+    "branch",
+    "bloodGroup",
+    "date",
+    "time",
+    "image",
+    "DOB",
+    "seenBy",
+    "totalViews",
+];
 function User() {
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState();
@@ -27,31 +41,34 @@ function User() {
     useEffect(() => {
         window.scrollTo(0, -200);
         setPageLoading(true);
-        getUserById(userId)
-            .then((userData) => {
-                document.title = `${userData.fullName} - Crushers`;
-                if (requestingUser) {
-                    setUser(userData);
-                    getUserByName(userData?.fullName).then((data) => {
-                        setAdditionalUserData(data);
-                    });
-                    const { totalViews } = userData;
-                    if (!requestingUser.labels.includes("admin"))
-                        updateTheSeenBy(
-                            requestingUser,
-                            userId,
-                            totalViews,
-                            userData
-                        );
-                } else {
-                    const profile = {
-                        $id: userData.$id,
-                        imgLink: userData.imgLink,
-                    };
-                    setUser(profile);
-                }
-            })
-            .finally(() => setPageLoading(false));
+        if (requestingUser.labels.includes("admin") || requestingUser.labels.includes("user")) {
+            userDetails.push("Address");
+        }
+            getUserById(userId, userDetails)
+                .then((userData) => {
+                    document.title = `${userData.fullName} - Crushers`;
+                    if (requestingUser) {
+                        setUser(userData);
+                        getUserByName(userData?.fullName).then((data) => {
+                            setAdditionalUserData(data);
+                        });
+                        const { totalViews } = userData;
+                        if (!requestingUser.labels.includes("admin"))
+                            updateTheSeenBy(
+                                requestingUser,
+                                userId,
+                                totalViews,
+                                userData
+                            );
+                    } else {
+                        const profile = {
+                            $id: userData.$id,
+                            imgLink: userData.imgLink,
+                        };
+                        setUser(profile);
+                    }
+                })
+                .finally(() => setPageLoading(false));
     }, [userId]);
 
     const handleEmailFetch = () => {
@@ -155,10 +172,10 @@ function User() {
                                 />
                                 <Para
                                     text={"Address:"}
-                                    output={user?.Address}
+                                    output={user?.Address || <span className="text-red-700 text-md font-semibold">**Not for Everyone</span>}
                                 />
-                                <Para text={"Date:"} output={user?.date} />
-                                <Para text={"Time :"} output={user?.time} />
+                                {/* <Para text={"Date:"} output={user?.date} /> */}
+                                {/* <Para text={"Time :"} output={user?.time} /> */}
                                 <div className="flex">
                                     <Para
                                         text={"Email Id :"}
@@ -181,7 +198,11 @@ function User() {
                         </div>
                     </BackgroundGradient>
                 </div>
-                {additionalUserData?.length && <div className="text-gray-50 px-4 font-mono">**Below Data May be Incorrect: </div>}
+                {additionalUserData?.length && (
+                    <div className="text-gray-50 px-4 font-mono">
+                        **Below Data May be Incorrect:{" "}
+                    </div>
+                )}
                 <div>
                     {additionalUserData && additionalUserData.length > 0 && (
                         <div className="space-y-5">

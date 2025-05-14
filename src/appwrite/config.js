@@ -27,7 +27,10 @@ export const RandomUserList = async () => {
     const res = await databases.listDocuments(
         service.appwriteDatabaseId,
         service.appwriteCollectionId,
-        [Query.limit(1045)]
+        [
+            Query.limit(1045),
+            Query.select(["fullName", "DOB", "image", "branch","$id"]),
+        ]
     );
     const documents = res.documents;
     const selectedUser = [];
@@ -41,24 +44,24 @@ export const RandomUserList = async () => {
 };
 
 export const searchUserByKeyword = async (keyword) => {
+    const reqData = Query.select(["fullName","image","$id","DOB","branch"]);
     let user = await databases.listDocuments(
         service.appwriteDatabaseId,
         service.appwriteCollectionId,
-        [Query.startsWith("fullName", keyword), Query.limit(20)]
+        [Query.startsWith("fullName", keyword), Query.limit(20), reqData]
     );
     if (user.documents.length == 0) {
-        console.log("hii");
         user = await databases.listDocuments(
             service.appwriteDatabaseId,
             service.appwriteCollectionId,
-            [Query.endsWith("fullName", keyword), Query.limit(20)]
+            [Query.endsWith("fullName", keyword), Query.limit(20), reqData]
         );
     }
     if (user.documents.length == 0) {
         user = await databases.listDocuments(
             service.appwriteDatabaseId,
             service.appwriteCollectionId,
-            [Query.search("fullName", keyword), Query.limit(20)]
+            [Query.search("fullName", keyword), Query.limit(20), reqData]
         );
     }
     const users = user.documents;
@@ -92,7 +95,7 @@ export const searchFriend = async ({ branch, phoneNo, isLE, DOB }) => {
     return users;
 };
 
-export const getUserById = async (userId) => {
+export const getUserById = async (userId, userDetails) => {
     const user = await databases.getDocument(
         service.appwriteDatabaseId,
         service.appwriteCollectionId,
