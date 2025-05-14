@@ -9,8 +9,7 @@ const userDetails = [
     "rollNo",
     "branch",
     "bloodGroup",
-    "date",
-    "time",
+
     "image",
     "Address",
     "DOB",

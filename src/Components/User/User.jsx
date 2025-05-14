@@ -22,11 +22,8 @@ const userDetails = [
     "rollNo",
     "branch",
     "bloodGroup",
-    "date",
-    "time",
     "image",
     "DOB",
-    "seenBy",
     "totalViews",
 ];
 function User() {
@@ -41,34 +38,40 @@ function User() {
     useEffect(() => {
         window.scrollTo(0, -200);
         setPageLoading(true);
-        if (requestingUser.labels.includes("admin") || requestingUser.labels.includes("user")) {
+        if (
+            requestingUser.labels.includes("admin") ||
+            requestingUser.labels.includes("user")
+        ) {
             userDetails.push("Address");
         }
-            getUserById(userId, userDetails)
-                .then((userData) => {
-                    document.title = `${userData.fullName} - Crushers`;
-                    if (requestingUser) {
-                        setUser(userData);
-                        getUserByName(userData?.fullName).then((data) => {
-                            setAdditionalUserData(data);
-                        });
-                        const { totalViews } = userData;
-                        if (!requestingUser.labels.includes("admin"))
-                            updateTheSeenBy(
-                                requestingUser,
-                                userId,
-                                totalViews,
-                                userData
-                            );
-                    } else {
-                        const profile = {
-                            $id: userData.$id,
-                            imgLink: userData.imgLink,
-                        };
-                        setUser(profile);
-                    }
-                })
-                .finally(() => setPageLoading(false));
+        if (requestingUser.labels.includes("admin")) {
+            userDetails.push("seenBy");
+        }
+        getUserById(userId, userDetails)
+            .then((userData) => {
+                document.title = `${userData.fullName} - Crushers`;
+                if (requestingUser) {
+                    setUser(userData);
+                    getUserByName(userData?.fullName).then((data) => {
+                        setAdditionalUserData(data);
+                    });
+                    const { totalViews } = userData;
+                    if (!requestingUser.labels.includes("admin"))
+                        updateTheSeenBy(
+                            requestingUser,
+                            userId,
+                            totalViews,
+                            userData
+                        );
+                } else {
+                    const profile = {
+                        $id: userData.$id,
+                        imgLink: userData.imgLink,
+                    };
+                    setUser(profile);
+                }
+            })
+            .finally(() => setPageLoading(false));
     }, [userId]);
 
     const handleEmailFetch = () => {
@@ -172,7 +175,13 @@ function User() {
                                 />
                                 <Para
                                     text={"Address:"}
-                                    output={user?.Address || <span className="text-red-700 text-md font-semibold">**Not for Everyone</span>}
+                                    output={
+                                        user?.Address || (
+                                            <span className="text-red-700 text-md font-semibold">
+                                                **Not for Everyone
+                                            </span>
+                                        )
+                                    }
                                 />
                                 {/* <Para text={"Date:"} output={user?.date} /> */}
                                 {/* <Para text={"Time :"} output={user?.time} /> */}
