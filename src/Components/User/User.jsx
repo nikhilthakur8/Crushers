@@ -15,17 +15,7 @@ import { Bounce, toast, ToastContainer } from "react-toastify";
 import { AdditionalInfo } from "./AdditionalInfo";
 import { getUserByName } from "../../appwrite/config.addtional.js";
 import { IconSquareToggleHorizontal } from "@tabler/icons-react";
-const userDetails = [
-    "fullName",
-    "email",
-    "mobileNumber",
-    "rollNo",
-    "branch",
-    "bloodGroup",
-    "image",
-    "DOB",
-    "totalViews",
-];
+
 function User() {
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState();
@@ -36,17 +26,26 @@ function User() {
     const [additionalUserData, setAdditionalUserData] = useState(null);
     const requestingUser = useSelector((state) => state.userData);
     useEffect(() => {
+        const userDetails = [
+            "fullName",
+            "email",
+            "mobileNumber",
+            "rollNo",
+            "branch",
+            "bloodGroup",
+            "image",
+            "DOB",
+            "totalViews",
+        ];
         window.scrollTo(0, -200);
         setPageLoading(true);
         if (
             requestingUser.labels.includes("admin") ||
             requestingUser.labels.includes("user")
-        ) {
+        )
             userDetails.push("Address");
-        }
-        if (requestingUser.labels.includes("admin")) {
-            userDetails.push("seenBy");
-        }
+        if (requestingUser.labels.includes("admin")) userDetails.push("seenBy");
+        console.log(userId);
         getUserById(userId, userDetails)
             .then((userData) => {
                 document.title = `${userData.fullName} - Crushers`;
