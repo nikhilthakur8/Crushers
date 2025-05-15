@@ -45,7 +45,6 @@ function User() {
         )
             userDetails.push("Address");
         if (requestingUser.labels.includes("admin")) userDetails.push("seenBy");
-        console.log(userId);
         getUserById(userId, userDetails)
             .then((userData) => {
                 document.title = `${userData.fullName} - Crushers`;
