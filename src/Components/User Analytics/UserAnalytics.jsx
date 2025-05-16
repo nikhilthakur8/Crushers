@@ -10,9 +10,10 @@ function UserAnalytics() {
     const userData = useSelector((state) => state.userData);
     const navigate = useNavigate();
     useEffect(() => {
+        const userDetails = ["seenBy", "totalViews"];
         if (!userData.labels.includes("admin")) navigate(-1);
         else {
-            getUserById(userId).then((userData) => {
+            getUserById(userId, userDetails).then((userData) => {
                 setUser(userData);
             });
         }
