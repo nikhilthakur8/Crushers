@@ -28,7 +28,7 @@ export const RandomUserList = async () => {
         service.appwriteCollectionId,
         [
             Query.limit(1045),
-            Query.select(["fullName", "DOB", "image", "branch","$id"]),
+            Query.select(["fullName", "DOB", "image", "branch", "$id"]),
         ]
     );
     const documents = res.documents;
@@ -43,7 +43,7 @@ export const RandomUserList = async () => {
 };
 
 export const searchUserByKeyword = async (keyword) => {
-    const reqData = Query.select(["fullName","image","$id","DOB","branch"]);
+    const reqData = Query.select(["fullName", "image", "$id", "DOB", "branch"]);
     let user = await databases.listDocuments(
         service.appwriteDatabaseId,
         service.appwriteCollectionId,
@@ -101,8 +101,7 @@ export const getUserById = async (userId, userDetails) => {
         userId,
         [Query.select(userDetails)]
     );
-
-    user["imgLink"] = getPhotoPreview(user.image);
+    if (user?.image) user["imgLink"] = getPhotoPreview(user.image);
     return user;
 };
 
