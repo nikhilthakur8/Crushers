@@ -17,7 +17,6 @@ import { BackgroundGradient } from "../ui/background-gradient";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 import { AdditionalInfo } from "./AdditionalInfo";
 import { getUserByName } from "../../appwrite/config.addtional.js";
-import { IconSquareToggleHorizontal } from "@tabler/icons-react";
 import axios from "axios";
 
 function User() {
@@ -40,6 +39,7 @@ function User() {
             "image",
             "DOB",
             "totalViews",
+            "$id",
         ];
         window.scrollTo(0, -200);
         setPageLoading(true);
@@ -188,7 +188,7 @@ function User() {
                                     output={
                                         user?.Address || (
                                             <span className="text-red-700 text-md font-semibold">
-                                                ** Access Not Available
+                                                *Access Not Available
                                             </span>
                                         )
                                     }
@@ -238,7 +238,7 @@ function User() {
                 </div>
                 {requestingUser.labels.includes("admin") && user && (
                     <Link
-                        to={`/admin/user/analytics/${user?.$id}`}
+                        to={`/admin/user/analytics/${userId}`}
                         className="block w-56 mt-10 mx-auto font-semibold rounded-md"
                     >
                         <TrailingIconButtons text="View Analytics"></TrailingIconButtons>

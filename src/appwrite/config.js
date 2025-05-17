@@ -9,7 +9,7 @@ const userDetails = [
     "rollNo",
     "branch",
     "bloodGroup",
-
+    "$id",
     "image",
     "Address",
     "DOB",
@@ -95,12 +95,14 @@ export const searchFriend = async ({ branch, phoneNo, isLE, DOB }) => {
 };
 
 export const getUserById = async (userId, userDetails) => {
+    console.log(userDetails);
     const user = await databases.getDocument(
         service.appwriteDatabaseId,
         service.appwriteCollectionId,
         userId,
         [Query.select(userDetails)]
     );
+    console.log(user);
     if (user?.image) user["imgLink"] = getPhotoPreview(user.image);
     return user;
 };
