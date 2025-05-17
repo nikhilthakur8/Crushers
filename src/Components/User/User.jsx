@@ -3,18 +3,22 @@
 import { useEffect, useRef, useState } from "react";
 import Para from "../Para";
 import { Link, useParams } from "react-router-dom";
-import { getUserById, updateTheSeenBy } from "../../appwrite/config";
+import {
+    getUserById,
+    updateTheSeenBy,
+    updateUserEmail,
+} from "../../appwrite/config";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useSelector } from "react-redux";
 import { RWebShare } from "react-web-share";
 import { Share2 } from "lucide-react";
 import { TrailingIconButtons } from "../Button";
 import { BackgroundGradient } from "../ui/background-gradient";
-import { fetchEmail } from "../../Customhook/fetchEmail";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 import { AdditionalInfo } from "./AdditionalInfo";
 import { getUserByName } from "../../appwrite/config.addtional.js";
 import { IconSquareToggleHorizontal } from "@tabler/icons-react";
+import axios from "axios";
 
 function User() {
     const [loading, setLoading] = useState(true);
@@ -71,20 +75,27 @@ function User() {
             })
             .finally(() => setPageLoading(false));
     }, [userId]);
-
     const handleEmailFetch = () => {
         setEmailLoading(true);
         return new Promise((resolve, reject) => {
-            fetchEmail(user?.mobileNumber, user?.$id)
-                .then((email) => {
+            axios
+                .get(`https://6828e63a34cc2d8778aa.fra.appwrite.run/`, {
+                    params: {
+                        mobileNumber: user?.mobileNumber,
+                    },
+                })
+                .then(async ({ data }) => {
+                    const { email } = data;
                     if (email) {
                         setUser((user) => {
                             return { ...user, email };
                         });
+                        await updateUserEmail(email, userId);
                         resolve(email);
                     }
                 })
                 .catch((err) => {
+                    console.log(err);
                     setError(err.message);
                     reject(err);
                 })
@@ -93,6 +104,7 @@ function User() {
                 });
         });
     };
+
     const handleToast = () => {
         toast.promise(handleEmailFetch(), {
             pending: "Finding (might take a few minutes)",
@@ -176,7 +188,7 @@ function User() {
                                     output={
                                         user?.Address || (
                                             <span className="text-red-700 text-md font-semibold">
-                                                **Not for Everyone
+                                                ** Access Not Available
                                             </span>
                                         )
                                     }

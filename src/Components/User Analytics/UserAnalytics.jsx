@@ -14,7 +14,6 @@ function UserAnalytics() {
         else {
             getUserById(userId, ["seenBy"]).then((userData) => {
                 setUser(userData);
-                console.log(userData);
             });
         }
     }, [userId]);
